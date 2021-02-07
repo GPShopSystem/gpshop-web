@@ -1,4 +1,7 @@
+require('dotenv').config()
 const withOffline = require('next-offline')
+const path = require('path')
+
 
 module.exports = withOffline({
 	target: process.env.NEXT_TARGET || 'serverless',
@@ -30,5 +33,11 @@ module.exports = withOffline({
 				}
 			}
 		]
-	}
+	},
+	sassOptions: {
+		includePaths: [path.join(__dirname, 'styles')],
+	},
+	env: {
+		currency: process.env.CURRENCY,
+	  }
 })

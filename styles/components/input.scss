@@ -1,0 +1,101 @@
+.field-container {
+    position: relative;
+}
+.field-float {
+  display: block;
+  position: relative;
+  font-weight: normal;
+  color: #212121;
+  width: calc(100% - 0em);
+  -webkit-transition: all 0.2s linear;
+  transition: all 0.2s linear;
+  background: white;
+  @media (max-width: 799px) {
+    font-size:16px;
+  }
+}
+.field-float label, .field-float > span {
+  position: absolute;
+  left: 12px;
+  top: 7px;
+  cursor: text;
+  font-size: 75%;
+  opacity: .7;
+  transition: all .2s;
+  @media (max-width: 799px) {
+    font-size: 70%;
+    top: 5px;
+  }
+}
+.field-float select {
+  appearance: none;
+}
+
+.field-float input, .field-float select {
+  font-size: 16px;
+  padding: 24px 12px 14px;
+  border: 1px solid #e6e6e6;
+  border-radius: 6px;
+  margin-bottom: 0;
+  width: 100%;
+  color: #212121;
+  transition: all 0.2s linear;
+  border-radius: 6px;
+}
+
+.field-float input::-webkit-input-placeholder, .field-float select::-webkit-input-placeholder {
+  opacity: 1;
+  transition: all .2s;
+}
+
+.field-float input:-ms-input-placeholder, .field-float select:-ms-input-placeholder {
+  opacity: 1;
+  transition: all .2s;
+}
+
+.field-float input::-ms-input-placeholder, .field-float select::-ms-input-placeholder {
+  opacity: 1;
+  transition: all .2s;
+}
+
+.field-float input::placeholder, .field-float select::placeholder {
+  opacity: 1;
+  transition: all .2s;
+}
+
+.field-float input:placeholder-shown:not(:focus)::-webkit-input-placeholder, .field-float select:placeholder-shown:not(:focus)::-webkit-input-placeholder {
+  opacity: 0;
+}
+
+.field-float input:placeholder-shown:not(:focus):-ms-input-placeholder, .field-float select:placeholder-shown:not(:focus):-ms-input-placeholder {
+  opacity: 0;
+}
+
+.field-float input:placeholder-shown:not(:focus)::-ms-input-placeholder, .field-float select:placeholder-shown:not(:focus)::-ms-input-placeholder {
+  opacity: 0;
+}
+
+.field-float input:placeholder-shown:not(:focus)::placeholder, .field-float select:placeholder-shown:not(:focus)::placeholder {
+  opacity: 0;
+}
+
+.field-float input:placeholder-shown:not(:focus) + *, .field-float select:placeholder-shown:not(:focus) + * {
+    font-size: 14px;
+    opacity: .5;
+    top: 18px;
+    left: 12px;
+    @media (max-width: 799px) {
+        font-size:16px;
+    }
+}
+
+.field-float input:focus, .field-float select:focus {
+  outline: none;
+  border-color: rgba(0, 0, 0, 0.5);
+}
+
+.field-float select {
+  padding-right: 1em;
+  background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3E%3Cpath fill='%23333' d='M2 0L0 2h4zm0 5L0 3h4z'/%3E%3C/svg%3E") no-repeat right 0.5em bottom 0.25em;
+  background-size: 8px 10px;
+}

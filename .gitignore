@@ -4,3 +4,4 @@ static/sw.js
 out
 *-error.log
 yarn.lock
+package-lock.json

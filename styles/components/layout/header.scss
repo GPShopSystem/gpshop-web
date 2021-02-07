@@ -1,0 +1,60 @@
+header {
+    height: 100px;
+    .header {
+        &-float {
+            height: 100px;
+            display: flex;
+            align-items: center;
+            padding: 0 30px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9911;
+            box-shadow: 0 2px 4px rgb(0 0 0 / 8%);
+            transition: .25s ease-in-out;
+            background-color: white;
+        }
+        &-branding  {
+            padding: 10px 0;
+            margin-right: 0;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+        &-form {
+            width: 960px;
+            max-width: 62%;
+            margin: 0 auto;
+        }
+        &-right {
+            display: flex;
+            align-items: center;
+            &-cart{
+                display: flex;
+                cursor: pointer;
+                position: relative;
+                color: #212121;
+                transition: .15s ease-in-out;
+                &-count{
+                    width: 18px;
+                    height: 18px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                    font-size: 10px;
+                    font-weight: 600;
+                    color: #fff;
+                    background-color: #212121;
+                    position: absolute;
+                    top: -10px;
+                    right: -10px;
+                    transition: .15s ease-in-out;
+                }
+            }
+        }
+    }
+}

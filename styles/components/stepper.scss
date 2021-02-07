@@ -1,0 +1,14 @@
+.stepper {
+    display: flex;
+    span {
+        flex: 1;
+        font-size: 20px;
+        font-weight: 700;
+        color: #e6e6e6;
+        display: flex;
+        align-items: center;
+        &.active {
+            color: #212121;
+        }
+    }
+}

@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+@import 'react-toastify/dist/ReactToastify.css';
+@import '@redq/reuse-modal/lib/index.css';
+
+
+html {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  *, *::before, *::after {
+    box-sizing: inherit;
+}
+
+a {
+  background-color: transparent;
+  text-decoration: none;
+}
+
+body {
+    color: #212121;
+    margin: 0;
+    font-size: 0.875rem;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+    background-color: #f9f9f9;
+}
+
+// Componentes
+@import "components/layout/layout.scss";
+@import "components/layout/header";
+@import "components/treemenu";
+@import "components/input.scss";
+@import "components/search.scss";
+@import "components/tableorder.scss";
+
+@import "components/product/card";
+@import "components/product/actioninput";
+@import "components/product/view";
+@import "components/product/itemcart";
+@import "components/sidebarCart";
+@import "components/stepper";
+
+// Pages
+@import "pages/product";
+@import "pages/checkout";
+@import "pages/cart";
+
+@import "global"

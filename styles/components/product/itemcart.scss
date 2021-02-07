@@ -1,0 +1,117 @@
+.itemcart {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding: 30px;
+    border-bottom: 1px solid #f3f3f3;
+    user-select: none;
+    &-thumb {
+        width: 105px;
+        flex-shrink: 0;
+        position: relative;
+        overflow: hidden;
+        border-radius: 6px;
+        align-self: center;
+        height: 105px;
+        display: flex;
+        justify-content: center;
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            margin: 0;
+        }
+        span {
+            &.remove {
+                cursor: pointer;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 0;
+                opacity: 0;
+                background-color: rgba(0,0,0,.25);
+                transition: .15s ease-in-out;
+            }
+        }
+    }
+    &-info {
+        flex-grow: 1;
+        padding: 0 15px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    &-title {
+        display: block;
+        font-size: 13px;
+        color: #5a5a5a;
+        transition: .15s ease-in-out;
+        margin-bottom: 5px;
+    }
+    &-price {
+        display: block;
+        font-size: 13px;
+        color: #999;
+        margin-bottom: 8px;
+    }
+    &-count {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        &-wrapper {
+            display: inline-flex;
+            border-radius: 6px;
+            box-shadow: 0 5px 10px rgb(0 0 0 / 16%);
+        }
+        &-update {
+            width: 35px;
+            height: 35px;
+            flex-shrink: 0;
+            color: #fff;
+            background-color: #212121;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: .15s ease-in-out;
+            &.decrement {
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+            &.increment {
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+        &-value {
+            width: 45px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+            color: #FFF;
+            line-height: 1;
+            background-color: #212121;
+        }
+        &-total {
+            font-weight: 600;
+            line-height: 1.2;
+        }
+    }
+    &:hover {
+        span.remove {
+            opacity: 1;
+        }
+    }
+}

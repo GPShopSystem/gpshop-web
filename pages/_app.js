@@ -1,12 +1,22 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import dynamic from 'next/dynamic'
 import Head from 'next/head'
 import App from 'next/app'
-import { createMuiTheme } from '@material-ui/core/styles'
-import { ThemeProvider } from '@material-ui/styles'
-import CssBaseline from '@material-ui/core/CssBaseline'
+import { wrapper } from '../redux/store'
+import '../styles/index.scss'
+import Header from '../components/Layout/Header/Header'
+import SidebarCart from '../components/SidebarCart'
+import Layout from '../components/Layout'
+import { Modal } from '@redq/reuse-modal';
 
-export default class MyApp extends App {
+const ProgressBar = dynamic(
+	() => {
+	  return import('../components/ProgressBar')
+	},
+	{ ssr: false },
+)
+
+class MyApp extends App {
 	static async getInitialProps({ Component, ctx }) {
 		return {
 			pageProps: {
@@ -20,40 +30,30 @@ export default class MyApp extends App {
 
 	componentDidMount() {
 		if (process.env.NODE_ENV !== 'production') {
-			const axe = require('react-axe')
-			axe(React, ReactDOM, 1000)
 		}
 	}
 
 	render() {
 		const { Component, pageProps } = this.props
-
-		const theme = createMuiTheme({
-			palette: {
-				background: {
-					default: '#EEE',
-				},
-				primary: {
-					main: '#673ab7',
-				},
-			},
-		})
-
 		return (
 			<>
 				<Head>
-					<title>Todo App</title>
+					<title>GPSHOP</title>
 					<meta
 						name="viewport"
 						content="width=device-width, initial-scale=1.0"
 					/>
 				</Head>
-				<ThemeProvider theme={theme}>
-					<CssBaseline>
+				<ProgressBar />
+				<Header />
+					<Layout sidebar>
 						<Component {...pageProps} />
-					</CssBaseline>
-				</ThemeProvider>
+					</Layout>
+					<SidebarCart />
+        		<Modal />
 			</>
 		)
 	}
 }
+
+export default wrapper.withRedux(MyApp)

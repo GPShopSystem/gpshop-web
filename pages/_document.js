@@ -5,19 +5,15 @@ import { ServerStyleSheets } from '@material-ui/styles'
 class MyDocument extends Document {
 	render() {
 		return (
-			<Html lang="en-GB">
+			<Html lang="es-ES">
 				<Head>
 					<meta name="theme-color" content="#673ab7" />
 					<meta
 						name="Description"
 						content="an example of NextJS app with 100% accessible lighthouse score"
 					/>
-					<link rel="manifest" href="static/manifest.json" />
-					<link rel="icon" href="static/img/favicon.ico" />
-					<link
-						rel="stylesheet"
-						href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
-					/>
+					<link rel="manifest" href="/static/manifest.json" />
+					<link rel="icon" href="/static/img/favicon.ico" />
 				</Head>
 				<body>
 					<Main />
