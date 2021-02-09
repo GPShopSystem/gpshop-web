@@ -11,7 +11,7 @@ import { Modal } from '@redq/reuse-modal';
 
 const ProgressBar = dynamic(
 	() => {
-	  return import('../components/ProgressBar')
+	  return import('../components/progressBar')
 	},
 	{ ssr: false },
 )

@@ -1,14 +1,12 @@
 import { combineReducers } from 'redux'
 import cart from './cart'
 import general from './general'
+import checkout from './checkout'
 
 const appReducer = combineReducers({
   cart,
   general,
-  checkout: {
-    shippingOptions: [],
-    checkoutTokenObject: {},
-  }
+  checkout
 })
 
 const rootReducer = (state, action) => {

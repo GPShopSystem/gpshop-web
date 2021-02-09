@@ -1,16 +1,15 @@
 import React from 'react';
 import TableOrder from '../components/TableOrder';
 import Sticky from 'react-stickynode'
-import Stepper from '../components/Stepper';
 import Steps from '../containers/checkout'
 
 export default function Index() {
-	return (
+    return (
         <div className="pageCheckout">
             <div className="pageCheckout-item pageCheckout-information boxBorder">
-                <Stepper />
                 <Steps />
             </div>
+            
             <div className="pageCheckout-item ">
                 <Sticky top={120} innerZ={999}>
                     <div className="widgetOrder boxBorder">

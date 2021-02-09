@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { ChevronRight } from 'react-feather'
 
-const Stepper = () => {
+const Stepper = ({currentStep = 1, steps = []}) => {
     return ( 
         <div className="stepper">
-            <span className="active">Información</span>
-            <span><ChevronRight size={20} /></span>
-            <span>Envío</span>
-            <span><ChevronRight size={20} /></span>
-            <span>Confirmación</span>
+            {
+                steps.map((e,i) => (
+                    <Fragment key={i}>
+                        <span  className={e.step === currentStep ? 'active' : ''}>{e.label}</span>
+                        <span className="separator"><ChevronRight size={20} /></span>
+                    </Fragment>
+                ))
+            }
         </div>
      );
 }

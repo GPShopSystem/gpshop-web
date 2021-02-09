@@ -1,13 +1,13 @@
 import React from 'react';
 import { useTotalCartPrice } from '../hooks/hooks'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 const Item = ({ product }) => {
     const currency = process.env.currency
     return (
         <tr className="cart_item">
             <td className="product-name">
-                <span><strong>× 1</strong> {product.title}</span>
+                <span><strong>× {product.quantity}</strong> {product.title}</span>
             </td>
             <td className="product-total">
                 <span>

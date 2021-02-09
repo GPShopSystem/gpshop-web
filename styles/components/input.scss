@@ -10,6 +10,19 @@
   -webkit-transition: all 0.2s linear;
   transition: all 0.2s linear;
   background: white;
+  &-error{
+    font-size: 11px;
+    color: #f11845;
+    position: absolute;
+  }
+  &.error {
+    input {
+      border: 1px solid #f11845;
+    }
+    label { 
+      color: #f11845;
+    }
+  }
   @media (max-width: 799px) {
     font-size:16px;
   }
@@ -82,7 +95,7 @@
 .field-float input:placeholder-shown:not(:focus) + *, .field-float select:placeholder-shown:not(:focus) + * {
     font-size: 14px;
     opacity: .5;
-    top: 18px;
+    top: 20px;
     left: 12px;
     @media (max-width: 799px) {
         font-size:16px;
