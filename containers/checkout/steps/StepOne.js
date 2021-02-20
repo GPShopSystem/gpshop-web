@@ -157,9 +157,7 @@ const StepOne = () => {
             style={{ margin: '20px 0'}} 
             onClick={submit}
         >
-            <a>
-                <span className="label">Continuar</span>
-            </a>
+            <span className="label">Continuar</span>
         </div>
     </> );
 }

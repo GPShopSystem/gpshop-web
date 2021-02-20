@@ -37,7 +37,10 @@ const Header = () => {
             </div>
             <div className="header-right">
                 <div className="header-right-cart">
-                    <ShoppingBag onClick={() => {dispatch(cartActions.toggleCart(true))}} />
+                    <ShoppingBag onClick={() => {{
+                        dispatch(cartActions.toggleCart(true))
+                        dispatch(cartActions.toggleCartMode(1))
+                    }}} />
                     <span className="header-right-cart-count">{cart_total}</span>
                 </div>
             </div>

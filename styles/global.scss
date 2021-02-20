@@ -16,63 +16,67 @@
 }
   
 .button-black {
-  a {
-      display: flex;
-      align-items: center;
-      min-height: 58px;
-      background-color: #212121;
-      color: #fff;
-      border-radius: 6px;
-      padding: 15px 20px;
-      line-height: 1.625;
-      font-size: 16px;
-      transition: .35s ease-in-out;
-      cursor: pointer;
-      .label {
-          flex-grow: 1;
-          text-align: center;
-      }
-      .amount {
-          padding-left: 40px;
-          position: relative;
-          &::before{
-              content: "";
-              height: 100%;
-              width: 1px;
-              background-color: #fff;
-              display: block;
-              position: absolute;
-              top: 0;
-              left: 20px;
-          }
-      }
-      &:hover{
-          color: #fff;
-          background-color: #3a3a3a;
-      }
+    display: flex;
+    align-items: center;
+    min-height: 58px;
+    background-color: #212121;
+    color: #fff;
+    border-radius: 6px;
+    padding: 15px 20px;
+    line-height: 1.625;
+    font-size: 16px;
+    transition: .35s ease-in-out;
+    cursor: pointer;
+    .label {
+        flex-grow: 1;
+        text-align: center;
+    }
+    .amount {
+        padding-left: 40px;
+        position: relative;
+        &::before{
+            content: "";
+            height: 100%;
+            width: 1px;
+            background-color: #fff;
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 20px;
+        }
+    }
+    &:hover{
+        color: #fff;
+        background-color: #3a3a3a;
+    }
+  &.disabled {
+      background-color: #909090;
+      cursor: not-allowed;
   }
 }
 
 .button-white {
-  a {
-      display: flex;
-      align-items: center;
-      min-height: 58px;
-      background-color: #f3f3f3;
-      color: #212121;
-      border-radius: 6px;
-      padding: 15px 20px;
-      line-height: 1.625;
-      font-size: 16px;
-      transition: .35s ease-in-out;
-      cursor: pointer;
-      .label {
-          flex-grow: 1;
-          text-align: center;
-      }
-      &:hover{
-          background-color: #e6e6e6;
-      }
+  display: flex;
+  align-items: center;
+  min-height: 58px;
+  background-color: #f3f3f3;
+  color: #212121;
+  border-radius: 6px;
+  padding: 15px 20px;
+  line-height: 1.625;
+  font-size: 16px;
+  transition: .35s ease-in-out;
+  cursor: pointer;
+  .label {
+      flex-grow: 1;
+      text-align: center;
+  }
+  &:hover{
+      background-color: #e6e6e6;
+  }
+  &.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
   }
 }
 
@@ -105,11 +109,34 @@
 
 .sticky__wrapper {
     position: relative;
-    // height: 4rem; /* probably you need to set height value for wrapper */
   }
   
 .sticky .sticky--inner {
     position: fixed;
-    // top: 0; 
     z-index: 1;
+}
+
+.floatingButton {
+  position: fixed;
+  right: 0px;
+  bottom: 30px;
+  z-index: 1;
+  display: flex;
+  padding: 0 30px;
+}
+
+@keyframes zoomEffect {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+      -webkit-transform: scale(1.2);
+      transform: scale(1.2);
+      color: #61bd4f;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
 }

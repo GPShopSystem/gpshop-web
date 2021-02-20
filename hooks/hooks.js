@@ -31,6 +31,11 @@ export const useTotalCartPrice = () => {
   return total
 }
 
+export const userCanOrder = () => {
+  const totalPrice = useTotalCartPrice()
+  return totalPrice >= 100
+}
+
 export const createDataTree = dataset => {
   let hashTable = Object.create(null)
   dataset.forEach( aData => hashTable[aData.id] = { ...aData, children : [] } )

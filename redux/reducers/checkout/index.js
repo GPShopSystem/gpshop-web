@@ -2,7 +2,7 @@ import produce from 'immer'
 import * as checkoutTypes from '../../types/checkout'
 
 const initialState = {
-    currentStep: 2,
+    currentStep: 1,
     stepOne: {
         typeDoc: 1
     },

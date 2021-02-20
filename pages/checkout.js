@@ -14,7 +14,7 @@ export default function Index() {
                 <Sticky top={120} innerZ={999}>
                     <div className="widgetOrder boxBorder">
                         <h3>Resúmen del pedido</h3>
-                        <TableOrder />
+                        <TableOrder showTotalProducts/>
                     </div>
                 </Sticky>
             </div>

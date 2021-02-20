@@ -14,7 +14,7 @@ const Select = forwardRef((props, ref) => {
                 placeholder=" "
                 ref={ref}
             >
-                <option disabled selected value=""> -- Seleccionar -- </option>
+                <option disabled value=""> -- Seleccionar -- </option>
                 {
                     props.options.map(op => <option key={op[props.idOption]} value={op[props.idOption]}>{op[props.labelOption]}</option>) 
                 }

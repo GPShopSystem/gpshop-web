@@ -1,5 +1,12 @@
 import * as cartTypes from '../../types/cart'
 
+export const toggleCartMode = (active) => {
+    return {
+        type: cartTypes.TOGGLE_CART_MODE,
+        payload: active
+    }
+}
+
 export const toggleCart = (active) => {
     return {
         type: cartTypes.TOGGLE_CART,

@@ -3,6 +3,7 @@ import StepOne from './steps/StepOne'
 import { useSelector } from 'react-redux'
 import Stepper from '../../components/Stepper';
 import StepTwo from './steps/StepTwo';
+import StepThree from './steps/StepThree';
 
 const Steps = () => {
     const currentStep = useSelector(state => state.checkout.currentStep)
@@ -30,7 +31,7 @@ const Steps = () => {
             case 2:
                 return ( <StepTwo /> );
             case 3:
-                return ( <StepOne /> );
+                return ( <StepThree /> );
             default: 
                 return ( <StepOne /> );
         }

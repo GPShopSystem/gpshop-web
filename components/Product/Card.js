@@ -48,11 +48,10 @@ const ProductCard = ({data}) => {
     return (
         <div className="productCard useProduct">
             <div className="productCard-thumb" onClick={handleQuickViewModal}>
-                <div>
-                    <img 
-                        className="useImage"
-                        src={data.image}
-                        alt={data.title} />
+                <div 
+                    className="productCard-thumb-image" 
+                    style={{backgroundImage: 'url('+data.image+')'}}
+                    >
                     <div className="quickView"><Eye color={'#fff'} size={40} /></div>
                 </div>
             </div>

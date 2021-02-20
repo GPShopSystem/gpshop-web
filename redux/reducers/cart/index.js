@@ -1,6 +1,7 @@
 import * as cartTypes from '../../types/cart'
 
 const initialState = {
+  toggleCartMode: 1, // 2 to only view
   toggleCart: false,
   list: []
 }
@@ -79,6 +80,11 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         toggleCart: action.payload
+    }
+    case cartTypes.TOGGLE_CART_MODE:
+      return {
+        ...state,
+        toggleCartMode: action.payload
     }
     default:
       return state

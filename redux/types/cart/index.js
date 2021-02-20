@@ -5,3 +5,4 @@ export const CLEAR_ITEM = 'CLEAR_ITEM'
 export const SET_CART = 'SET_CART'
 
 export const TOGGLE_CART = 'TOGGLE_CART'
+export const TOGGLE_CART_MODE = 'TOGGLE_CART_MODE'

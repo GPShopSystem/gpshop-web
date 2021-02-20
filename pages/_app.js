@@ -8,6 +8,7 @@ import Header from '../components/Layout/Header/Header'
 import SidebarCart from '../components/SidebarCart'
 import Layout from '../components/Layout'
 import { Modal } from '@redq/reuse-modal';
+import ButtonFloatingOrder from '../components/ButtonFloatingOrder'
 
 const ProgressBar = dynamic(
 	() => {
@@ -50,6 +51,7 @@ class MyApp extends App {
 						<Component {...pageProps} />
 					</Layout>
 					<SidebarCart />
+					<ButtonFloatingOrder />
         		<Modal />
 			</>
 		)

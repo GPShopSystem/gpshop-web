@@ -2,13 +2,18 @@ import React, {memo} from 'react';
 import { useSpring, animated } from 'react-spring';
 import { ChevronRight, ChevronDown, Hash } from 'react-feather';
 import { usePrevious, useMeasure } from '../hooks/hooks';
+import { useState } from 'react';
 
 const Item = memo(({children,
-    name,
-    isOpen,
-    isChild,
-    active,
-    onClick}) => {
+      name,
+      isOpen,
+      isChild,
+      active,
+      onClick,
+      onOpen
+    }) => {
+    const [openArrow, setOpenArrow] = useState(false)
+    isOpen = openArrow || isOpen
     const previous = usePrevious(isOpen);
     const [bind, { height: viewHeight }] = useMeasure();
     const { height, opacity, transform } = useSpring({
@@ -19,7 +24,8 @@ const Item = memo(({children,
           transform: `translate3d(${isOpen ? 0 : 0}px,0,0)`,
         },
     });
-    const Icon = isOpen ? <ChevronDown /> : <ChevronRight />
+    isOpen = isOpen || openArrow
+    const Icon = isOpen ? <ChevronDown  /> : <ChevronRight onClick={onOpen}/>
 
     if(isChild) {
         return (
@@ -36,16 +42,21 @@ const Item = memo(({children,
     return (
         <div className="treemenu-item">
             <div className="treemenu-item-title">
-                <label className={ active ? 'active' : ''} onClick={onClick} >
+                <label className={ active ? 'active' : ''} >
                     <span className="thumb">
                         <Hash size={14} />
                     </span>    
-                    <span className="name" >
+                    <span className="name" onClick={onClick} >
                         {name}
                     </span>
-                    <span className="open" > 
-                        {children && children.length > 0 ? Icon : null}
-                    </span>
+                    {
+                      children && children.length > 0 ? (
+                        <span className="open" onClick={() => setOpenArrow(!openArrow)}> 
+                          {children && children.length > 0 ? Icon : null}
+                      </span>
+                      ) : ''
+                    }
+                    
                 </label>
             </div>
             

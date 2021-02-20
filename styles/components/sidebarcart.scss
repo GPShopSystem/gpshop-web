@@ -87,6 +87,12 @@
                     background-color: #3a3a3a;
                 }
             }
+            &.disabled {
+                a {
+                    background-color: #909090;
+                    cursor: not-allowed;
+                }
+            }
         }
     }
 

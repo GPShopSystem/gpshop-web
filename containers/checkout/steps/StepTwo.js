@@ -14,7 +14,7 @@ const StepTwo = () => {
     const submit = handleSubmit((data) => {
         if (Object.keys(errors).length === 0){
             dispatch(checkoutTypes.updateUserData('stepTwo', {...info, ...data}))
-            dispatch(checkoutTypes.changeStep(1))
+            dispatch(checkoutTypes.changeStep(3))
         }
     })
 
@@ -65,18 +65,14 @@ const StepTwo = () => {
                 className="button-black" 
                 onClick={submit}
             >
-                <a>
-                    <span className="label">Continuar</span>
-                </a>
+                <span className="label">Continuar</span>
             </div>
             <div 
                 className="button-white" 
                 style={{ marginBottom: '20px'}} 
                 onClick={() => dispatch(checkoutTypes.changeStep(1))}
             >
-                <a>
-                    <span className="label">Atrás</span>
-                </a>
+                <span className="label">Retroceder</span>
             </div>
         </div>
      );

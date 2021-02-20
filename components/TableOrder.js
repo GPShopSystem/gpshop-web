@@ -1,6 +1,8 @@
 import React from 'react';
 import { useTotalCartPrice } from '../hooks/hooks'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import * as cartActions from '../redux/actions/cart'
+import { Eye } from 'react-feather'
 
 const Item = ({ product }) => {
     const currency = process.env.currency
@@ -18,21 +20,64 @@ const Item = ({ product }) => {
     )
 }
 
-const TableOrder = ({ showProducts }) => {
+const TableOrder = ({ showTotalProducts, showProducts }) => {
     const currency = process.env.currency
     const totalPrice = useTotalCartPrice()
-	const products = useSelector(state => state.cart.list)
+    const dispatch = useDispatch()
+    const products = useSelector(state => state.cart.list)
+    const cart_total = products.reduce((a,b) => {
+        return a + b.quantity
+    }, 0)
+
+    const openCart = () => {
+        dispatch(cartActions.toggleCart(true))
+        dispatch(cartActions.toggleCartMode(2))
+    }
+
+    const renderHead = () => {
+        return (
+            <thead>
+                <tr>
+                    <th className="product-name">Producto</th>
+                    <th className="product-total">Subtotal</th>
+                </tr>
+            </thead>
+        )
+    }
+
     return (
         <table className="tableOrder">
             {
+                showTotalProducts && (
+                    <>
+                        { renderHead() }
+                        <tbody>
+                            <tr className="cart_item">
+                                <td className="product-name">
+                                    <span 
+                                        style={
+                                            {display: 'flex', 
+                                            alignItems: 'center',
+                                            cursor: 'pointer'}
+                                        }
+                                    >
+                                        {cart_total} productos seleccionados <Eye size={16} onClick={openCart}/>
+                                    </span>
+                                </td>
+                                <td className="product-total">
+                                    <span>
+                                        {currency}{totalPrice.toFixed(2)}
+                                    </span>					
+                                </td>
+                            </tr>
+                        </tbody>
+                    </>
+                )
+            }
+            {
                 showProducts && (
                     <>
-                        <thead>
-                            <tr>
-                                <th className="product-name">Producto</th>
-                                <th className="product-total">Subtotal</th>
-                            </tr>
-                        </thead>
+                        { renderHead() }
                         <tbody>
                             {
                                 products.map(p => <Item product={p} key={p.id}/>)
@@ -45,18 +90,18 @@ const TableOrder = ({ showProducts }) => {
             <tfoot>
                 <tr>
                     <th>Subtotal</th>
-                    <td><span>{currency}1212</span></td>
+                    <td><span>{currency}{totalPrice.toFixed(2)}</span></td>
                 </tr>
-                {/* <tr>
-                    <th>Shipping</th>
+                {<tr>
+                    <th>Envío</th>
                     <td>
                         <ul className="shipping">
                             <li>
-                                213
+                                Gratis
                             </li>
                         </ul>
                     </td>
-                </tr> */}
+                </tr>}
                 <tr>
                     <th>Total</th>
                     <td><strong>{currency}{totalPrice.toFixed(2)}</strong>
