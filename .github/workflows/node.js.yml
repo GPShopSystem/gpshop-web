@@ -27,6 +27,14 @@ jobs:
     - name: Install
       run: npm install
     - name: Build
+      env:
+        URL_BASE: ${{ secrets.URL_BASE }}
+        MONGO: ${{ secrets.MONGO }}
+        MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+        MYSQL_USER: ${{ secrets.MYSQL_USER }}
+        MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+        MYSQL_DATABASE: ${{ secrets.MYSQL_DATABASE }}
+        CURRENCY: ${{ secrets.CURRENCY }}
       run: npm run build --if-present
     - name: Daemon
       run: NODE_ENV=production pm2 restart DeployApp --update-env
