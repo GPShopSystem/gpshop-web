@@ -3,7 +3,6 @@ const path = require('path')
 
 
 module.exports = {
-	future: { webpack5: true },
 	target: process.env.NEXT_TARGET || 'serverless',
 	workboxOpts: {
 		swDest: 'static/service-worker.js',
@@ -37,7 +36,17 @@ module.exports = {
 	sassOptions: {
 		includePaths: [path.join(__dirname, 'styles')],
 	},
+	webpack: (config, { isServer }) => {
+		// Fixes npm packages that depend on `fs` module
+		if (!isServer) {
+		  config.node = {
+			fs: 'empty'
+		  }
+		}
+	
+		return config
+	},
 	env: {
 		currency: process.env.CURRENCY,
-	  }
+	}
 }
