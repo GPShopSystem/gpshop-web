@@ -1,9 +1,8 @@
 require('dotenv').config()
-const withOffline = require('next-offline')
 const path = require('path')
 
 
-module.exports = withOffline({
+module.exports = {
 	future: { webpack5: true },
 	target: process.env.NEXT_TARGET || 'serverless',
 	workboxOpts: {
@@ -41,4 +40,4 @@ module.exports = withOffline({
 	env: {
 		currency: process.env.CURRENCY,
 	  }
-})
+}
