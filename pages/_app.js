@@ -12,7 +12,7 @@ import ButtonFloatingOrder from '../components/ButtonFloatingOrder'
 
 const ProgressBar = dynamic(
 	() => {
-	  return import('../components/progressBar')
+	  return import('../components/Progress')
 	},
 	{ ssr: false },
 )
