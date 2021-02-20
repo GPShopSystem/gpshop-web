@@ -4,6 +4,7 @@ const path = require('path')
 
 
 module.exports = withOffline({
+	future: { webpack5: true },
 	target: process.env.NEXT_TARGET || 'serverless',
 	workboxOpts: {
 		swDest: 'static/service-worker.js',
