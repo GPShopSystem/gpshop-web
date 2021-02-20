@@ -1,4 +1,4 @@
-import db from '../../libs/db'
+import db from '../../../libs/db'
 import escape from 'sql-template-strings'
 
 export default async function handler(req, res) {
