@@ -3,6 +3,7 @@ import ProductCard from '../components/Product/Card';
 import { useDispatch } from 'react-redux'
 import * as generalActions from '../redux/actions/general'
 import { createDataTree } from '../hooks/hooks'
+import Head from 'next/head'
 
 export default function Index({ products, categories }) {
     const dispatch = useDispatch()
@@ -13,6 +14,9 @@ export default function Index({ products, categories }) {
 
 	return (
 		<>
+			<Head>
+				<title>Global Peruvian Shop (GPSHOP) - Artículos de limpieza</title>
+			</Head>
 			<div className="productList">
 				{
 					products.map(e => <ProductCard key={e.id} data={e} />)

@@ -1,6 +1,6 @@
 {
-  "name": "NextSimpleStarter",
-  "short_name": "Next PWA",
+  "name": "Global Peruvian Shop",
+  "short_name": "GPSHOP",
   "icons": [
     {
       "src": "img/apple-touch-icon-120x120.png",
@@ -35,6 +35,6 @@
   ],
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "#673ab7",
-  "background_color": "#EEE"
+  "theme_color": "#2f53d0",
+  "background_color": "#f9f9f9"
 }

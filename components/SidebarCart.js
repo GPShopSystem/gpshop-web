@@ -112,6 +112,13 @@ const SidebarCart = () => {
                 <div className="sidebarCart-header-close" onClick={closeCart}><X /></div>
             </div>
             <div className="sidebarCart-cart">
+                {
+                    !isEmptyCart && (
+                        <div className="sidebarCart-cart-minimum">
+                            Pedido mínimo: S/.1000
+                        </div>
+                    )
+                }
                 <div className="sidebarCart-cart-content">
                     { renderContent() }
                 </div>

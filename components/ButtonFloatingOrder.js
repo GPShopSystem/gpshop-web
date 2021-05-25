@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux'
 import { useRouter } from 'next/router';
+import { Eye } from 'react-feather'
 
 const ButtonFloatingOrder = () => {
     const products = useSelector(state => state.cart.list).reduce((a,b) => {
@@ -21,7 +22,7 @@ const ButtonFloatingOrder = () => {
                         router.push('/cart').then(() => window.scrollTo(0, 0));
                     }}
                     >
-                    <span className="label">{products} productos seleccionados</span>
+                    <span className="label"><Eye size={14} style={{ verticalAlign: 'middle'}} /> {products} productos seleccionados</span>
                 </div>
         )
         return button

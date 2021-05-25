@@ -1,12 +1,18 @@
 import React from 'react';
 import Router from 'next/router';
 import Buttons from './Buttons';
+import { useSelector } from 'react-redux'
 // import ActionInput from './ActionInput';
 import { XCircle, ArrowLeft } from 'react-feather'
 
 const View = ({ product, showButtonBack, isModal, onClose }) => {
+	const products = useSelector(state => state.cart.list)
+    const inCart = products.find(e => e.id === product.id)
+    const isOffer = product.active_discount !== 0
+    const priceToShow = isOffer ? product.original_price : product.price
+    const currency = process.env.currency
     
-    return ( 
+	return ( 
         <div className="viewProduct">
             {
                 isModal && (
@@ -25,8 +31,13 @@ const View = ({ product, showButtonBack, isModal, onClose }) => {
 			</div>
 			<div className="viewProduct-right">
 				<h1 className="title">{product.title}</h1>
-				<div className="viewProduct-right-price">
-					S/.{product.price.toFixed(2)}
+				<div className={`viewProduct-right-price ${isOffer ? 'offer' : ''}`}>
+					<span className="price">{currency}{priceToShow.toFixed(2)}</span>
+					{
+						isOffer && (
+							<span className="price promo">{currency}{product.price.toFixed(2)}</span>
+						)
+					}
 				</div>
 				<p><b>Presentación: </b> Paquete de 12 unidades</p>
 				<p className="viewProduct-right-description">
@@ -34,7 +45,7 @@ const View = ({ product, showButtonBack, isModal, onClose }) => {
 				</p>
 				<div className="viewProduct-right-action"> 
                     {/* <ActionInput data={product} /> */}
-					<Buttons data={product} />
+					<Buttons cart={inCart} data={product} />
 				</div>
 			</div>
 		</div>

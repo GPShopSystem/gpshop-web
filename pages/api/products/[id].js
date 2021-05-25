@@ -11,7 +11,9 @@ export default async function handler(req, res) {
     case 'GET':
       try {
         const products = await db.query(escape`
-          SELECT product.*, category.title as catTitle, category.slug as catSlug
+          SELECT product.*, category.title as catTitle, category.slug as catSlug, 
+          product.price as original_price,
+          product.price - (product.price * (product.discount/100)) AS price
           FROM product
           LEFT JOIN category ON product.category_id = category.id
           where product.slug = ${id}

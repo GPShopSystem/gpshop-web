@@ -25,9 +25,8 @@ const Header = () => {
                         <Image
                             alt="GPSHOP logo"
                             src="/static/img/logo.png"
-                            width={94}
+                            width={116.85}
                             height={65}
-                            layout="fill"
                         />
                     </div>
                 </a>

@@ -3,11 +3,9 @@ import { Plus, Minus } from 'react-feather'
 import { useDispatch, useSelector } from 'react-redux'
 import * as cartActions from '../../redux/actions/cart'
 
-const Buttons = ({ data }) => {
+const Buttons = ({ data, cart, openAlert }) => {
     const [saving, setSaving] = useState(false)
-	const products = useSelector(state => state.cart.list)
     const dispatch = useDispatch()
-    const inCart = products.find(e => e.id === data.id)
 
     const showLoader = () => {
         setSaving(true)
@@ -16,17 +14,23 @@ const Buttons = ({ data }) => {
         }, 1000)
     }
 
-    const addToCart = (e) => {
+    const addToCart = () => {
         showLoader()
         dispatch(cartActions.addCart({...data, quantity: 1}))
     }
+
+    const addToCartFirst = () => {
+        addToCart()
+        openAlert()
+    }
+
     const removeToCart = () => {
         showLoader()
         dispatch(cartActions.removeCart({...data, quantity: 1}))
     }
 
     const renderButtonAddCart = () => (
-        <div className="productCard-add" onClick={addToCart}>
+        <div className="productCard-add" onClick={addToCartFirst}>
             <span className="label">AGREGAR</span>
             <span className="icon increment"><Plus size={14} /></span>
         </div>
@@ -34,15 +38,19 @@ const Buttons = ({ data }) => {
     const renderButtonsCount = () => (
         <div className="productCard-count">
             <span className="itemcart-count-update decrement" onClick={removeToCart}><Minus size={14} /></span>
-            <span className="itemcart-count-value">{inCart.quantity}</span>
+            <span className="itemcart-count-value">{cart.quantity}</span>
             <span className="itemcart-count-update increment" onClick={addToCart}><Plus size={14} /></span>
             <span className={`loader ${saving ? 'show' : ''}`} />
         </div>
     )
     
-    return ( !inCart ? renderButtonAddCart() : renderButtonsCount() );
+    return ( !cart ? renderButtonAddCart() : renderButtonsCount() );
 }
- 
+
+Buttons.defaultProps = {
+    openAlert: () => {}
+}
+
 export default Buttons;
 
 /**

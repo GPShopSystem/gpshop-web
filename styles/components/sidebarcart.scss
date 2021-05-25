@@ -33,11 +33,16 @@
 
     &-cart {
         user-select: none;
-        height: calc(100% - 100px);
+        height: calc(100% - 140px);
         border: 0;
         box-shadow: none;
         padding: 0;
         margin-bottom: 30px;
+        &-minimum {
+            padding: 10px;
+            text-align: center;
+            background: #edeaea;
+        }
         &-content {
             display: flex;
             flex-direction: column;

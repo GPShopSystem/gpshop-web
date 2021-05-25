@@ -4,6 +4,7 @@ import * as generalActions from '../../redux/actions/general'
 import { createDataTree } from '../../hooks/hooks'
 import View from '../../components/Product/View';
 import ProductCard from '../../components/Product/Card';
+import Head from 'next/head'
 
 export default function Index({ product, categories }) {
 	const dispatch = useDispatch()
@@ -19,12 +20,16 @@ export default function Index({ product, categories }) {
 	
 	return (
 		<>
+			<Head>
+				<title>{product.title} - GPShop.pe</title>
+			</Head>
 			<View product={product} showButtonBack={showButtonBack} />
 			<h2>Tal vez te interese...</h2>
 			<div className="productList" style={{marginTop: 20}}>
                 {
                     ['', '', '', '', '', ''].map(e => <ProductCard key={e.id} data={{
-						price: 12
+						price: 12,
+						original_price: 13
 					}} />)
                 }
             </div>

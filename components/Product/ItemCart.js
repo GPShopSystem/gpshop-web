@@ -9,6 +9,8 @@ const ItemCard = ({data}) => {
     const removeToCart = () => dispatch(cartActions.removeCart({...data, quantity: 1}))
     const cleanItemCart = () => dispatch(cartActions.cleanItemCart(data))
     const currency = process.env.currency
+    const isOffer = data.active_discount !== 0
+    const priceToShow = isOffer ? data.original_price : data.price
 
     return (
         <div className="itemcart">
@@ -23,9 +25,17 @@ const ItemCard = ({data}) => {
                 <a className="itemcart-title">
                     {data.title}
                 </a>
-                <span className="itemcart-price">
-                    Precio por unidad {currency}{data.price}  
-                </span>
+                <div className="itemcart-description">
+                    {data.presentation}
+                </div>
+                <div className={`itemcart-price ${isOffer ? 'offer' : ''}`}>
+                    <span className="price">{currency}{priceToShow.toFixed(2)}</span>
+                    {
+                        isOffer && (
+                            <span className="price promo">{currency}{data.price.toFixed(2)}</span>
+                        )
+                    }
+                </div>
                 <div className="itemcart-count">
                     <div className="itemcart-count-wrapper">
                         <span className="itemcart-count-update decrement" onClick={removeToCart}><Minus size={14} /></span>
