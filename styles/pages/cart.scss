@@ -13,6 +13,13 @@
             width: 100%;
         }
     }
+    .empty{
+        padding: 20px 30px 10px;
+        a {
+            font-weight: 600;
+            color: #2f53d0;
+        }
+    }
 
     @media (max-width: 767px) {
         flex-direction: column;

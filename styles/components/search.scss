@@ -1,7 +1,7 @@
 .searchBox {
     align-items: center;
     border-radius: 6px;
-    overflow: hidden;
+    //overflow: hidden;
     width: 100%;
     color: rgb(119, 121, 140);
     background-color: white;
@@ -9,6 +9,7 @@
     border-style: solid;
     border-color: #2f53d0;
     display: flex;
+    position: relative;
     svg {
         margin-left: 16px;
         margin-right: 16px;
@@ -24,5 +25,28 @@
         color: rgb(33, 33, 33);
         font-size: 14px;
         font-family: "Open Sans", sans-serif;
+    }
+    &-floating {
+        position: absolute;
+        width: 100%;
+        top: 53px;
+        background: white;
+        border: 1px solid #f6f6f6;
+        box-shadow: 0 2px 4px rgb(0 0 0 / 8%);
+        &-content {
+            display: grid;
+            grid-gap: 20px;
+            padding: 15px;
+            grid-template-columns: 1fr 1fr;
+        }
+        .padding {
+            padding: 15px;
+        }
+        &-footer {
+            text-align: center;
+            border-top: 1px dashed #2f53d0;
+            color: #2f53d0;
+            padding: 10px;
+        }
     }
 }

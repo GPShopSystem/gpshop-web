@@ -17,6 +17,9 @@ export default function Index({ products, categories }) {
 			<Head>
 				<title>Global Peruvian Shop (GPSHOP) - Artículos de limpieza</title>
 			</Head>
+			<div style={{marginBottom:15}}>
+				<img src="/static/banner-home/general.png" width="100%" />
+			</div>
 			<div className="productList">
 				{
 					products.map(e => <ProductCard key={e.id} data={e} />)

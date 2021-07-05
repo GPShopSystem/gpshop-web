@@ -27,6 +27,11 @@ const StepTwo = () => {
                     idOption={'id_ubigeo'}
                     labelOption={'nombre_ubigeo'}
                     value={info.departamento}
+                    ref={register({
+                        required: 'Este campo es requerido'
+                    })}
+                    name="departament"
+                    error={errors?.departament?.message}
                     placeholder="Departamento" />
             </div>
             <div className="form-group">
@@ -36,6 +41,11 @@ const StepTwo = () => {
                     value={info.provincia}
                     idOption={'id_ubigeo'}
                     labelOption={'nombre_ubigeo'}
+                    name="province"
+                    ref={register({
+                        required: 'Este campo es requerido'
+                    })}
+                    error={errors?.province?.message}
                     placeholder="Provincia" />
             </div>
             <div className="form-group">
@@ -45,6 +55,11 @@ const StepTwo = () => {
                     idOption={'id_ubigeo'}
                     value={info.distrito}
                     labelOption={'nombre_ubigeo'}
+                    name="district"
+                    error={errors?.district?.message}
+                    ref={register({
+                        required: 'Este campo es requerido'
+                    })}
                     placeholder="Distrito" />
             </div>
 

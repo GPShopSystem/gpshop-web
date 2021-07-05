@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import Stepper from '../../components/Stepper';
 import StepTwo from './steps/StepTwo';
 import StepThree from './steps/StepThree';
+import StepFour from './steps/StepFour';
 
 const Steps = () => {
     const currentStep = useSelector(state => state.checkout.currentStep)
@@ -32,6 +33,8 @@ const Steps = () => {
                 return ( <StepTwo /> );
             case 3:
                 return ( <StepThree /> );
+            case 4:
+                return ( <StepFour /> );
             default: 
                 return ( <StepOne /> );
         }

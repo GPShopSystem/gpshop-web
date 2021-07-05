@@ -3,6 +3,8 @@ export const DELETE_ITEM = 'DELETE_ITEM'
 export const UPDATE_ITEM = 'UPDATE_ITEM'
 export const CLEAR_ITEM = 'CLEAR_ITEM'
 export const SET_CART = 'SET_CART'
+export const UPDATE_COUNT_ITEM_CART = 'UPDATE_COUNT_ITEM_CART'
 
 export const TOGGLE_CART = 'TOGGLE_CART'
 export const TOGGLE_CART_MODE = 'TOGGLE_CART_MODE'
+export const RESET_CART = 'RESET_CART'

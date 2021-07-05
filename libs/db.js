@@ -18,3 +18,13 @@ exports.query = async query => {
     return { error }
   }
 }
+
+exports.queryOpt = async (query, opt = []) => {
+  try {
+    const results = await db.query(query, opt)
+    await db.end()
+    return results
+  } catch (error) {
+    return { error }
+  }
+}

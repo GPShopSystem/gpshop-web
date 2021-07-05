@@ -40,6 +40,11 @@ export default function Index() {
         }
     }
 
+    const renderProducts = () => {
+        if(products.length === 0) return <div className="empty">No se encontraron productos. <Link href="/"><a>Ver productos</a></Link></div>
+        return products.map(e => <ItemCard key={e.id} data={e} />)
+    }
+
 	return (
         <div className="pageCart">
             <div className="pageCart-item products boxBorder">
@@ -48,7 +53,7 @@ export default function Index() {
                     <p>Verifica los productos y presiona <b>procesar pedido</b> para continuar.</p>
                 </div>
                 {
-                    products.map(e => <ItemCard key={e.id} data={e} />)
+                    renderProducts()
                 }
             </div>
             <div className="pageCart-item">

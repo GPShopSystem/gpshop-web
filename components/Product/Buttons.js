@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Plus, Minus } from 'react-feather'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import * as cartActions from '../../redux/actions/cart'
 
 const Buttons = ({ data, cart, openAlert }) => {
     const [saving, setSaving] = useState(false)
+    const [count, setCount] = useState(cart ? cart.quantity : 0)
     const dispatch = useDispatch()
 
     const showLoader = () => {
@@ -14,19 +15,56 @@ const Buttons = ({ data, cart, openAlert }) => {
         }, 1000)
     }
 
+    const manualDispatchUpdate = (q) => {
+        dispatch(cartActions.updateCountItemCart({...data, quantity: q}))
+    }
+
+    useEffect(() => {
+        if(count > 0) manualDispatchUpdate(count)
+    },[count]);
+    
+    useEffect(() => {
+        if(cart?.quantity){
+            setCount(cart.quantity)
+        } else {
+            setCount(0)
+        }
+    }, [cart])
+
     const addToCart = () => {
         showLoader()
-        dispatch(cartActions.addCart({...data, quantity: 1}))
+        setCount(count + 1)
     }
 
     const addToCartFirst = () => {
+        if((count + 1) === 1) {
+            manualDispatchUpdate(1)
+        }
         addToCart()
         openAlert()
     }
 
     const removeToCart = () => {
         showLoader()
-        dispatch(cartActions.removeCart({...data, quantity: 1}))
+        if(count - 1 === 0) {
+            manualDispatchUpdate(0)
+        }
+        setCount(count - 1)
+    }
+    
+    const onchange = (e) => {
+        let value = parseInt(e.target.value.replace(/[^\d]/,''), 10)
+        if(isNaN(value)) value = ''
+        setCount(value)
+    }
+
+    const onBlur = (e) => {
+        let value = parseInt(e.target.value.replace(/[^\d]/,''), 10)
+        if(isNaN(value)) value = 0
+        if(value === 0) {
+            manualDispatchUpdate(0)
+        }
+        setCount(value)
     }
 
     const renderButtonAddCart = () => (
@@ -38,7 +76,14 @@ const Buttons = ({ data, cart, openAlert }) => {
     const renderButtonsCount = () => (
         <div className="productCard-count">
             <span className="itemcart-count-update decrement" onClick={removeToCart}><Minus size={14} /></span>
-            <span className="itemcart-count-value">{cart.quantity}</span>
+            <span className="itemcart-count-value">
+                <input 
+                    onBlur={onBlur}
+                    onChange={onchange}
+                    type="text" 
+                    value={count}
+                    size="4" />
+            </span>
             <span className="itemcart-count-update increment" onClick={addToCart}><Plus size={14} /></span>
             <span className={`loader ${saving ? 'show' : ''}`} />
         </div>

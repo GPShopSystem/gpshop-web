@@ -16,3 +16,9 @@ export const changeStep = (active) => {
       payload: active
   }
 }
+
+export const resetStep = () => {
+  return {
+      type: checkoutTypes.RESET_STEP
+  }
+}

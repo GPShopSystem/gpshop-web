@@ -40,4 +40,18 @@ export const cleanItemCart = (item) => {
     type: cartTypes.CLEAR_ITEM,
     payload: item
   }
-};
+}
+
+export const updateCountItemCart = (item) => {
+  return {
+    type: cartTypes.UPDATE_COUNT_ITEM_CART,
+    payload: item
+  }
+}
+
+export const resetCart = () => {
+  return {
+    type: cartTypes.RESET_CART,
+    payload: []
+  }
+}

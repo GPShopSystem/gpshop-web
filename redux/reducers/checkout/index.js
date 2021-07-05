@@ -26,6 +26,11 @@ const reducer = (state = initialState, action) => {
                 ...state,
                 currentStep: action.payload
             }
+        case checkoutTypes.RESET_STEP:
+            return {
+                ...state,
+                currentStep: 4
+            }
         default:
             return state
     }

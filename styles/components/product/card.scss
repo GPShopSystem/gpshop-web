@@ -143,7 +143,18 @@
             flex-grow: 1;
             color: #2f53d0;
             background-color: white;
-           
+            input {
+                text-align: center;
+                color: #2f53d0;
+                font-weight: 600;
+                font-size: 14px;
+                border: 1px solid #2f53d0;
+                height: 100%;
+                width: 100%;
+                &:active, &:focus {
+                    outline: none;
+                }
+            }
         }
         .loader {
             animation: running-progress 0.5s cubic-bezier(0.9, 0.2, 0.4, 1) infinite;

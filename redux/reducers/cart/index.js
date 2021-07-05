@@ -44,11 +44,39 @@ const removeItemFromCart = (state, action) => {
   return newCart
 };
 
+const updateCountItemCart = (state, action) => {
+  let newCart = []
+  const existingCartItemIndex = state.list.findIndex(
+    (item) => item.id === action.payload.id
+  );
+
+  if (existingCartItemIndex > -1) {
+    newCart = state.list.reduce((acc, item) => {
+      if (item.id === action.payload.id) {
+        const newQuantity = action.payload.quantity;
+        return newQuantity > 0
+          ? [...acc, { ...item, quantity: newQuantity }]
+          : [...acc];
+      }
+      return [...acc, item];
+    }, [])
+  } else {
+    newCart = [...state.list, action.payload]
+  }
+  saveCartToLocalStorage(newCart)
+  return newCart
+};
+
 const clearItemFromCart = (state, action) => {
   const newCart = state.list.filter((item) => item.id !== action.payload.id);
   saveCartToLocalStorage(newCart)
   return newCart 
 };
+
+const resetCart = () => {
+  saveCartToLocalStorage([])
+  return [] 
+}
 
 
 const reducer = (state = initialState, action) => {
@@ -63,13 +91,17 @@ const reducer = (state = initialState, action) => {
         ...state,
         list: addItemToCart(state, action)
       }
+    case cartTypes.UPDATE_COUNT_ITEM_CART:
+      return {
+        ...state,
+        list: updateCountItemCart(state, action)
+      }
     case cartTypes.DELETE_ITEM:
       return {
         ...state,
         list: removeItemFromCart(state, action)
       }
     case cartTypes.CLEAR_ITEM:
-      console.log("entra")
       return {
         ...state,
         list: clearItemFromCart(state, action)
@@ -86,6 +118,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         toggleCartMode: action.payload
     }
+    case cartTypes.RESET_CART:
+      return {
+        ...state,
+        list: resetCart()
+      }
     default:
       return state
   }
