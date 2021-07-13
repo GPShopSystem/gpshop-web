@@ -31,7 +31,7 @@ export default function Index({ products, categories }) {
 
 export async function getServerSideProps() {
 	const resProducts = await fetch(
-		process.env.URL_BASE + '/api/products'
+		process.env.URL_BASE + '/api/products/'
 	)
 	const json = await resProducts.json()
 	
