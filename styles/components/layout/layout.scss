@@ -9,6 +9,9 @@
             position: fixed;
             left: 0;
             height: calc(100% - (100px + 0px));
+            @include media(mobile) {
+                display: none;
+            }
         }
     }
     &-content {
@@ -24,6 +27,10 @@
             max-width: 100%;
             width: 100%;
             margin: unset;
+        }
+        @include media(mobile) {
+            max-width: 100%;
+            flex-basis: auto;
         }
     }
 }

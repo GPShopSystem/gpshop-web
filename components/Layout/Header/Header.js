@@ -4,10 +4,13 @@ import Image from 'next/image'
 import { ShoppingBag } from 'react-feather'
 import { useDispatch, useSelector } from 'react-redux'
 import * as cartActions from '../../../redux/actions/cart'
+import useResponsive from '../../../hooks/responsive.ts';
 import Link from 'next/link'
 
 const Header = () => {
     const dispatch = useDispatch()
+    const responsive = useResponsive()
+    console.log(responsive)
 	const cart_total = useSelector(state => state.cart.list.reduce((a,b) => {
         return a + b.quantity
     }, 0))
@@ -25,8 +28,8 @@ const Header = () => {
                         <Image
                             alt="GPSHOP logo"
                             src="/static/img/logo.png"
-                            width={116.85}
-                            height={65}
+                            width={responsive.sm ? 60 : 116.85}
+                            height={responsive.sm ? 33.38 : 65}
                         />
                     </div>
                 </a>

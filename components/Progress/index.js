@@ -1,5 +1,6 @@
 import Router from 'next/router'
 import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 let timer
 let state

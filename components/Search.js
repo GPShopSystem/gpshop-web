@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef} from 'react';
 import { Search as SearchIcon } from 'react-feather'
 import ItemSearchBox from './Product/ItemSearchBox';
 import useDebounce from '../hooks/debounce';
+import useResponsive from '../hooks/responsive.ts';
 import Link from 'next/link'
 /**
  * Cuando se comienza a escribir:

@@ -7,17 +7,18 @@ import { Eye }  from 'react-feather'
 import dynamic from 'next/dynamic';
 import AlertAdded from './AlertAdded';
 import { useSelector } from 'react-redux'
+import useResponsive from '../../hooks/responsive.ts';
 const View = dynamic(() => import('./View'));
 
 const ProductCard = ({data}) => {
     const [showAlert, setShowAlert] = useState(false)
 	const products = useSelector(state => state.cart.list)
     const inCart = products.find(e => e.id === data.id)
+    const responsive = useResponsive()
     const router = useRouter();
     const isOffer = data.active_discount !== 0
     const priceToShow = isOffer ? data.original_price : data.price
     const currency = process.env.currency
-
     const handleQuickVieModalClose = () => {
         const { pathname, query, asPath } = router
         const as = asPath
@@ -28,24 +29,25 @@ const ProductCard = ({data}) => {
     const handleQuickViewModal = () => {
         const { pathname, query } = router;
         const as = `/${data.catSlug}/${data.slug}`;
-        if (pathname === '/[category]/[product]') {
-            return router.push(pathname, as);
+        if (pathname === '/[category]/[product]' || responsive.xs || responsive.sm) {
+            return router.push(as, undefined, { scroll: true }).then(() => window.scrollTo(0, 0));
         }
+
         openModal({
-          show: true,
-          overlayClassName: 'quick-view-overlay',
-          closeOnClickOutside: false,
-          component: View,
-          componentProps: { product: data, isModal: true, onClose: handleQuickVieModalClose },
-          closeComponent: 'div',
-          config: {
-            enableResizing: false,
-            disableDragging: true,
-            className: 'quick-view-modal-product',
-            width: 750,
-            y: 30,
-            height: 'auto'
-          },
+            show: true,
+            overlayClassName: 'quick-view-overlay',
+            closeOnClickOutside: false,
+            component: View,
+            componentProps: { product: data, isModal: true, onClose: handleQuickVieModalClose },
+            closeComponent: 'div',
+            config: {
+              enableResizing: false,
+              disableDragging: true,
+              className: 'quick-view-modal-product',
+              width: 750,
+              y: 30,
+              height: 'auto'
+            },
         });
 
         router.push({ pathname, query }, { pathname: as, }, { shallow: true })

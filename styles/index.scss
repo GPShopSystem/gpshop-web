@@ -32,6 +32,76 @@ h1, h2, h3, h4 {
   font-family: "Gilroy", sans-serif;
 } 
 
+
+//Breakpoints
+$xsmall-screen: 320px;
+$small-screen: 480px;
+$medium-screen: 768px;
+$large-screen: 1200px;
+$xlarge-screen: 1360px;
+
+//Width column
+@function col($columns, $total) {
+  @return (100% / $total) * $columns;
+}
+
+
+
+@mixin media($types...) {
+  @each $type in $types {
+
+    //only mobile or mobile down
+    @if $type==mobile {
+      @media only screen and (max-width: $medium-screen - 1) {
+        @content;
+      }
+    }
+
+    @if $type==mobile-tablet {
+      @media only screen and (min-width: $small-screen) {
+        @content;
+      }
+    }
+
+    //tableb up
+    @if $type==tablet {
+      @media only screen and (min-width: $medium-screen) and (max-width: $large-screen - 1) {
+        @content;
+      }
+    }
+
+    //desktopmini up
+    @if $type==desktopmini {
+      @media only screen and (min-width: $large-screen) {
+        @content;
+      }
+    }
+
+    //desktop up
+    @if $type==desktop {
+      @media only screen and (min-width: $xlarge-screen) {
+        @content;
+      }
+    }
+  }
+}
+
+@keyframes zoomEffect {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  50% {
+      -webkit-transform: scale(1.2);
+      transform: scale(1.2);
+      color: #61bd4f;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+}
+
 // Componentes
 @import "components/layout/layout.scss";
 @import "components/layout/header";
