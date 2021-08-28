@@ -6,3 +6,10 @@ export const setCategories = (list) => {
         payload: list
     }
 }
+
+export const toggleMenu = (active) => {
+    return {
+        type: generalTypes.GENERAL_TOGGLE_MENU,
+        payload: active
+    }
+}

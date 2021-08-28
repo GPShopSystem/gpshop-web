@@ -1,20 +1,23 @@
 import React from 'react';
 import TreeMenu from '../TreeMenu';
 import { useRouter } from 'next/router';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import * as generalActions from '../../redux/actions/general'
 import { memo } from 'react';
 
-const Sidebar = () => {
-  	const categories = useSelector(state => state.general.cat_list)
+const Sidebar = ({className = ''}) => {
+  const dispatch = useDispatch()
+  	const toUse = useSelector(state => state.general)
+  	const categories = toUse.cat_list
     const router = useRouter();
     const { query } = router;
     const selectedQueries = query.category;
     const onCategoryClick = (slug) => {
+      dispatch(generalActions.toggleMenu(false))
       router.push('/'+slug);
     };
-    
     return ( 
-        <div className="layout-sidebar-left">
+        <div className={className}>
           <TreeMenu 
               data={categories}
               onClick={onCategoryClick}

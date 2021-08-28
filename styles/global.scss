@@ -12,6 +12,16 @@
     padding: 0;
     border: 0;
     border-radius: 6px;
+    .innerRndComponent {
+      height: auto;
+    }
+    .viewProduct {
+      height: 100%;
+      &-right {
+        height: 100%;
+        overflow: auto;
+      }
+    }
   }
 }
   

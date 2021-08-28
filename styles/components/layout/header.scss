@@ -1,5 +1,8 @@
 header {
     height: 100px;
+    @include media(mobile) {
+        height: 135px;
+    }
     .header {
         &-float {
             height: 100px;
@@ -14,6 +17,10 @@ header {
             box-shadow: 0 2px 4px rgb(0 0 0 / 8%);
             transition: .25s ease-in-out;
             background-color: white;
+            @include media(mobile) {
+                flex-direction: column;
+                height: 135px;
+            }
         }
         &-branding  {
             padding: 10px 0;
@@ -24,9 +31,34 @@ header {
             cursor: pointer;
         }
         &-form {
-            width: 960px;
-            max-width: 62%;
-            margin: 0 auto;
+            display: flex;
+            place-content: flex-end;
+            width: calc(100% - 96px);
+            @include media(mobile) {
+                width: 100%;
+            }
+            @include media(mobile) {
+                .topMobile {
+                    position: absolute;
+                    top: 20px;
+                    cursor: pointer;
+                    &.left {
+                        left: 30px;
+                    }
+                    &.right {
+                        right: 30px;
+                    }
+                }
+            }
+            .searchBox {
+                width: 740px;
+                max-width: 76%;
+                margin-right: auto;
+                margin-left: auto;
+                @include media(mobile) {
+                    max-width: 100%;
+                }
+            }
         }
         &-right {
             display: flex;

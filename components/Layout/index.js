@@ -11,7 +11,7 @@ const Layout = ({ children }) => {
     const showSidebar = !availableSidebar.includes(router.pathname)
 
     return ( <div className="layout">
-        { showSidebar && (<Sidebar />) }
+        { showSidebar && (<Sidebar className='layout-sidebar-left' />) }
         <div className={`layout-content ${!showSidebar ? 'whsidebar' : ''}`}>
             { children }
         </div>

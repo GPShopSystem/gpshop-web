@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
 import Search from '../../Search';
 import Image from 'next/image'
-import { ShoppingBag } from 'react-feather'
+import { ShoppingBag, Menu } from 'react-feather'
 import { useDispatch, useSelector } from 'react-redux'
 import * as cartActions from '../../../redux/actions/cart'
+import * as cartGeneral from '../../../redux/actions/general'
 import useResponsive from '../../../hooks/responsive.ts';
 import Link from 'next/link'
 
 const Header = () => {
+    const openMenu = useSelector(state => state.general.toggleMenu)
     const dispatch = useDispatch()
     const responsive = useResponsive()
-    console.log(responsive)
 	const cart_total = useSelector(state => state.cart.list.reduce((a,b) => {
         return a + b.quantity
     }, 0))
@@ -28,22 +29,31 @@ const Header = () => {
                         <Image
                             alt="GPSHOP logo"
                             src="/static/img/logo.png"
-                            width={responsive.sm ? 60 : 116.85}
-                            height={responsive.sm ? 33.38 : 65}
+                            width={responsive.md || responsive.sm ? 80 : 96.85}
+                            height={responsive.md || responsive.sm ? 44.5 : 53.86}
                         />
                     </div>
                 </a>
             </Link>
             <div className="header-form">
+                {
+                    (responsive.md || responsive.sm) && (<div className="topMobile left">
+                            <Menu onClick={() => {{
+                                dispatch(cartGeneral.toggleMenu(!openMenu))
+                            }}} />
+                    </div>)
+                }
+                
                 <Search placeholder="¿Qué productos necesitas?" icon />
-            </div>
-            <div className="header-right">
-                <div className="header-right-cart">
-                    <ShoppingBag onClick={() => {{
-                        dispatch(cartActions.toggleCart(true))
-                        dispatch(cartActions.toggleCartMode(1))
-                    }}} />
-                    <span className="header-right-cart-count">{cart_total}</span>
+                
+                <div className="header-right topMobile right">
+                    <div className="header-right-cart">
+                        <ShoppingBag onClick={() => {{
+                            dispatch(cartActions.toggleCart(true))
+                            dispatch(cartActions.toggleCartMode(1))
+                        }}} />
+                        <span className="header-right-cart-count">{cart_total}</span>
+                    </div>
                 </div>
             </div>
         </div>

@@ -5,6 +5,7 @@ import Distritos from '../../../libs/ubigeo/distritos.json'
 
 const initialState = {
   cat_loading: true,
+  toggleMenu: false,
   cat_list: [],
   ubigeo: {
     departamentos: Departamentos,
@@ -20,6 +21,11 @@ const reducer = (state = initialState, action) => {
           ...state,
           cat_loading: false,
           cat_list: action.payload
+      }
+      case generalTypes.GENERAL_TOGGLE_MENU:
+        return {
+            ...state,
+            toggleMenu: action.payload
       }
       default:
         return state

@@ -4,15 +4,21 @@ import Head from 'next/head'
 import App from 'next/app'
 import { wrapper } from '../redux/store'
 import '../styles/index.scss'
-import Header from '../components/Layout/Header/Header'
 import SidebarCart from '../components/SidebarCart'
 import Layout from '../components/Layout'
 import { Modal } from '@redq/reuse-modal';
 import ButtonFloatingOrder from '../components/ButtonFloatingOrder'
+import HeaderMobile from '../components/Layout/Header/HeaderMobile'
 
 const ProgressBar = dynamic(
 	() => {
 	  return import('../components/Progress')
+	},
+	{ ssr: false },
+)
+const Header = dynamic(
+	() => {
+	  return import('../components/Layout/Header/Header')
 	},
 	{ ssr: false },
 )
@@ -47,11 +53,12 @@ class MyApp extends App {
 				</Head>
 				<ProgressBar />
 				<Header />
-					<Layout sidebar>
-						<Component {...pageProps} />
-					</Layout>
-					<SidebarCart />
-					<ButtonFloatingOrder />
+				<Layout sidebar>
+					<Component {...pageProps} />
+				</Layout>
+				<SidebarCart />
+				<ButtonFloatingOrder />
+				<HeaderMobile />
         		<Modal />
 			</>
 		)
