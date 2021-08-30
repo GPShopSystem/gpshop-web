@@ -5,6 +5,9 @@
     padding: 30px;
     border-bottom: 1px solid #f3f3f3;
     user-select: none;
+    @include media(mobile) {
+        flex-direction: column;
+    }
     &-thumb {
         width: 105px;
         flex-shrink: 0;
@@ -46,6 +49,10 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        @include media(mobile) {
+            padding: 0;
+            width: 100%;
+        }
     }
     &-title {
         display: block;
@@ -86,6 +93,11 @@
         display: flex;
         align-items: flex-end;
         justify-content: space-between;
+        @include media(mobile) {
+            align-items: baseline;
+            justify-content: space-between;
+            width: 100%;
+        }
         &-wrapper {
             display: inline-flex;
             border-radius: 6px;

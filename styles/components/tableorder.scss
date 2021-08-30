@@ -2,6 +2,9 @@
     text-align: left;
     width: 100%;
     margin-top: 20px;
+    @include media(mobile) {
+        zoom: 0.8;
+    }
     thead {
         overflow: hidden;
         background-color: #f7f7f7;

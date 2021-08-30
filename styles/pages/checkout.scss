@@ -9,6 +9,11 @@
             margin-left: 40px;
             width: 450px;
             flex-shrink: 0;
+            @include media(mobile) {
+                margin-left: 0;
+                margin-top: 20px;
+                width: 100%;
+            }
         }
     }
     &-information {
@@ -18,11 +23,17 @@
             .type-client {
                 display: flex;
                 gap: 8px;
+                @include media(mobile) {
+                    flex-direction: column;
+                }
             }
             .form-group {
                 display: flex;
                 flex-direction: row;
                 gap: 20px;
+                @include media(mobile) {
+                    flex-direction: column;
+                }
             }
         }
     }
