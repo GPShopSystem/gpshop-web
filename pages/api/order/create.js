@@ -78,8 +78,8 @@ export default async function handler(req, res) {
             return a + (b['original_price'] * b['quantity']);
         }, 0);
 
-        MailController.sendOrder(data.email, order_code, data.products, data.total, discounts, original)
-        MailController.sendOrderAdmin("wjharil@gmail.com", order_code, data.products, data.total, discounts, original, {...clientObj, ...clientAddressObj})
+        await MailController.sendOrder(data.email, order_code, data.products, data.total, discounts, original)
+        await MailController.sendOrderAdmin("wjharil@gmail.com", order_code, data.products, data.total, discounts, original, {...clientObj, ...clientAddressObj})
         // Creo la orden
         return res.status(201).json({
           success: true,

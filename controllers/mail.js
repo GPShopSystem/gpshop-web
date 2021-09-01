@@ -17,13 +17,13 @@ const orderDetailsToAdmin = `<html xmlns="http://www.w3.org/1999/xhtml" lang="en
 
 const auth = {
   auth: {
-    api_key: process.env.NEXT_PUBLIC_API_KEY_MAILGUN,
-    domain: process.env.NEXT_PUBLIC_DOMAIN_MAILGUN
+    api_key: process.env.API_KEY_MAILGUN,
+    domain: process.env.DOMAIN_MAILGUN
   }
 }
 
 class MailController {
-  static sendOrder(email, order, products, total, discounts, original) {
+  static async sendOrder(email, order, products, total, discounts, original) {
     // Definimos el transporter
     const transporter = nodemailer.createTransport(mg(auth))
     products = products.map(e => (
@@ -43,25 +43,29 @@ class MailController {
     })
     // Definimos el email
     const mailOptions = {
-      from: process.env.NEXT_PUBLIC_ROOT_EMAIL_MAILGUN,
+      from: process.env.ROOT_EMAIL_MAILGUN,
       to: email,
       subject: `¡Hemos recibido tu pedido Nº ${order}!`,
       html: htmlToSend
     }
-    
-    transporter.sendMail(mailOptions, (err, info) => {
-      if (err) {
-        console.log("err", err)
-        return false
-      }
-      console.log('Correo enviado correctamente', info)
-      return true
-    })
+
+    await new Promise((resolve, reject) => {
+      // send mail
+      transporter.sendMail(mailOptions, (err, info) => {
+          if (err) {
+              console.error(err);
+              reject(err);
+          } else {
+              console.log(info);
+              resolve(info);
+          }
+      });
+    });
     
     return true
   }
 
-  static sendOrderAdmin(email, order, products, total, discounts, original, user) {
+  static async sendOrderAdmin(email, order, products, total, discounts, original, user) {
     // Definimos el transporter
     const transporter = nodemailer.createTransport(mg(auth))
     products = products.map(e => (
@@ -84,21 +88,24 @@ class MailController {
     })
     // Definimos el email
     const mailOptions = {
-      from: process.env.NEXT_PUBLIC_ROOT_EMAIL_MAILGUN,
+      from: process.env.ROOT_EMAIL_MAILGUN,
       to: email,
       subject: `¡Pedido recibido Nº ${order}!`,
       html: htmlToSend
     }
     
-    transporter.sendMail(mailOptions, (err, info) => {
-      if (err) {
-        console.log("err", err)
-        return false
-      }
-      console.log('Correo enviado correctamente', info)
-      return true
-    })
-    
+    await new Promise((resolve, reject) => {
+      // send mail
+      transporter.sendMail(mailOptions, (err, info) => {
+          if (err) {
+              console.error(err);
+              reject(err);
+          } else {
+              console.log(info);
+              resolve(info);
+          }
+      });
+    });
     return true
   }
 
@@ -108,7 +115,7 @@ class MailController {
 
     // Definimos el email
     const mailOptions = {
-      from: process.env.NEXT_PUBLIC_ROOT_EMAIL_MAILGUN,
+      from: process.env.ROOT_EMAIL_MAILGUN,
       to: email,
       subject: 'Reestablecimiento de contraseña',
       text: `Su link para reestablecer contraseña es ${process.env.URL_BASE}/nueva-contrasena/${token}`,
@@ -134,7 +141,7 @@ class MailController {
 
     // Definimos el email
     const mailOptions = {
-      from: process.env.NEXT_PUBLIC_ROOT_EMAIL_MAILGUN,
+      from: process.env.ROOT_EMAIL_MAILGUN,
       to: email,
       subject: 'Contraseña actualizada',
       text: `Su contraseña ha sido actualizada con éxito.`,

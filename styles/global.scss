@@ -125,6 +125,9 @@
     position: fixed;
     z-index: 1;
 }
+.sticky-inner-wrapper {
+  z-index: 2 !important;
+}
 
 .floatingButton {
   position: fixed;
