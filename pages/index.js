@@ -18,7 +18,7 @@ export default function Index({ products, categories }) {
 				<title>Global Peruvian Shop (GPSHOP) - Artículos de limpieza</title>
 			</Head>
 			<div style={{marginBottom:15}}>
-				<img src="/static/banner-home/general.png" width="100%" />
+				<img src="/static/banner-home/cover.png" width="100%" />
 			</div>
 			<div className="productList">
 				{

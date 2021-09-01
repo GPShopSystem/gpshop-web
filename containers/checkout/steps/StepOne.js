@@ -7,15 +7,25 @@ import Input from '../../../components/Input'
 const StepOne = () => {
     const [info, setInfo] = useState(useSelector(state => state.checkout.stepOne))
     const dispatch = useDispatch()
-    console.log(info)
     const onChangeInput = (e) => {
         setInfo({
             ...info,
             typeDoc: e.target.value
         })
     }
+    const onChangeDoc = (e) => {
+        setInfo({
+            ...info,
+            numDoc: e.target.value
+        })
+    }
     
     const { handleSubmit, register, errors } = useForm();
+
+    const validateTypeRuc = () => {
+        if(info.numDoc?.substring(0,2) == '10') return /^\d{11,11}$/i
+        return /^\d{12,12}$/i
+    }
 
     const submit = handleSubmit((data) => {
         if (Object.keys(errors).length === 0){
@@ -110,11 +120,12 @@ const StepOne = () => {
                     ref={register({
                         required: 'Este campo es requerido',
                         pattern: {
-                            value: info.typeDoc == 1 ? /^\d{8,8}$/i : /^\d{12,12}$/i,
+                            value: info.typeDoc == 1 ? /^\d{8,8}$/i : validateTypeRuc(),
                             message: "Ingrese un documento válido."
                         }
                     })}
                     error={errors?.numDoc?.message}
+                    onChange={(e)=> { onChangeDoc(e) }}
                 />
             </div>
             <div className="form-group">

@@ -92,7 +92,7 @@ const TableOrder = ({ showTotalProducts, showProducts }) => {
                     <th>Subtotal</th>
                     <td><span>{currency}{totalPrice.toFixed(2)}</span></td>
                 </tr>
-                {<tr>
+                {false && <tr>
                     <th>Envío</th>
                     <td>
                         <ul className="shipping">
