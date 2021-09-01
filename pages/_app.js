@@ -72,7 +72,7 @@ class MyApp extends App {
 				<FloatingWhatsApp 
 					accountName='GPSHOP' 
 					phoneNumber='51940147037'
-					chatMessage='Hola! 🤝\n¿podemos ayudarte?' 
+					chatMessage='Hola! 🤝¿podemos ayudarte?' 
 					placeholder='Escribe tu mensaje...'
 					statusMessage='Normalmente la respuesta es de 13 minutos'
 				/>

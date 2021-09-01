@@ -24,15 +24,19 @@ export default function Index({ product, categories }) {
 				<title>{product.title} - GPShop.pe</title>
 			</Head>
 			<View product={product} showButtonBack={showButtonBack} />
-			<h2>Tal vez te interese...</h2>
-			<div className="productList" style={{marginTop: 20}}>
-                {
-                    ['', '', '', '', '', ''].map(e => <ProductCard key={e.id} data={{
-						price: 12,
-						original_price: 13
-					}} />)
-                }
-            </div>
+			{
+				false && (<>
+					<h2>Tal vez te interese...</h2>
+					<div className="productList" style={{marginTop: 20}}>
+						{
+							['', '', '', '', '', ''].map(e => <ProductCard key={e.id} data={{
+								price: 12,
+								original_price: 13
+							}} />)
+						}
+					</div>
+				</>)
+			}
 		</>
 	)
 }
