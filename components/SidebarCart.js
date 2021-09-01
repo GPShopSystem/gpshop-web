@@ -58,7 +58,7 @@ const SidebarCart = () => {
                 </div>
             )
         } else {
-            return <Tooltip arrow title="El pedido mínimo es de S/.1000">
+            return <Tooltip arrow title="El pedido mínimo es de S/.10">
                 <div className="sidebarCart-cart-total disabled">
                     <a>
                         <span className="label">Procesar pedido</span>
@@ -115,7 +115,7 @@ const SidebarCart = () => {
                 {
                     !isEmptyCart && (
                         <div className="sidebarCart-cart-minimum">
-                            Pedido mínimo: S/.1000
+                            Pedido mínimo: S/.10
                         </div>
                     )
                 }

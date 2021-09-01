@@ -28,7 +28,7 @@ export default function Index() {
             )
         } else {
             return (
-                <Tooltip style={{display: 'block'}} arrow title="El pedido mínimo es de S/.1000">
+                <Tooltip style={{display: 'block'}} arrow title="El pedido mínimo es de S/.10">
                     <div 
                         className="button-black disabled" 
                         style={{marginTop: 20}}

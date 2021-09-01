@@ -23,6 +23,13 @@ const Header = dynamic(
 	{ ssr: false },
 )
 
+const FloatingWhatsApp = dynamic(
+	() => {
+	  return import('react-floating-whatsapp')
+	},
+	{ ssr: false },
+)
+
 class MyApp extends App {
 	static async getInitialProps({ Component, ctx }) {
 		return {
@@ -62,6 +69,13 @@ class MyApp extends App {
 				<ButtonFloatingOrder />
 				<HeaderMobile />
         		<Modal />
+				<FloatingWhatsApp 
+					accountName='GPSHOP' 
+					phoneNumber='51940147037'
+					chatMessage='Hola! 🤝\n¿podemos ayudarte?' 
+					placeholder='Escribe tu mensaje...'
+					statusMessage='Normalmente la respuesta es de 13 minutos'
+				/>
 			</>
 		)
 	}

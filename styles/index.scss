@@ -103,6 +103,7 @@ $xlarge-screen: 1360px;
 }
 
 // Componentes
+@import "components/whatsapp.scss";
 @import "components/layout/layout.scss";
 @import "components/layout/header";
 @import "components/treemenu";
