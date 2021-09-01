@@ -52,7 +52,9 @@ class MyApp extends App {
 					/>
 				</Head>
 				<ProgressBar />
-				<Header />
+				<header>
+					<Header />
+				</header>
 				<Layout sidebar>
 					<Component {...pageProps} />
 				</Layout>

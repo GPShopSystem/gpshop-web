@@ -21,7 +21,7 @@ const Header = () => {
         dispatch(cartActions.setCart(JSON.parse(data) || []))
     }, [])
 
-    return ( <header>
+    return ( <>
         <div className="header-float">
             <Link href={'/'}>
                 <a>
@@ -57,7 +57,7 @@ const Header = () => {
                 </div>
             </div>
         </div>
-    </header> );
+    </> );
 }
  
 export default Header;
