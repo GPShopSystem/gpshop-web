@@ -17,8 +17,8 @@ const orderDetailsToAdmin = `<html xmlns="http://www.w3.org/1999/xhtml" lang="en
 
 const auth = {
   auth: {
-    api_key: process.env.API_KEY_MAILGUN,
-    domain: process.env.DOMAIN_MAILGUN
+    api_key: process.env.NEXT_PUBLIC_API_KEY_MAILGUN,
+    domain: process.env.NEXT_PUBLIC_DOMAIN_MAILGUN
   }
 }
 
@@ -43,7 +43,7 @@ class MailController {
     })
     // Definimos el email
     const mailOptions = {
-      from: process.env.ROOT_EMAIL_MAILGUN,
+      from: process.env.NEXT_PUBLIC_ROOT_EMAIL_MAILGUN,
       to: email,
       subject: `¡Hemos recibido tu pedido Nº ${order}!`,
       html: htmlToSend
@@ -84,7 +84,7 @@ class MailController {
     })
     // Definimos el email
     const mailOptions = {
-      from: process.env.ROOT_EMAIL_MAILGUN,
+      from: process.env.NEXT_PUBLIC_ROOT_EMAIL_MAILGUN,
       to: email,
       subject: `¡Pedido recibido Nº ${order}!`,
       html: htmlToSend
@@ -108,7 +108,7 @@ class MailController {
 
     // Definimos el email
     const mailOptions = {
-      from: process.env.ROOT_EMAIL_MAILGUN,
+      from: process.env.NEXT_PUBLIC_ROOT_EMAIL_MAILGUN,
       to: email,
       subject: 'Reestablecimiento de contraseña',
       text: `Su link para reestablecer contraseña es ${process.env.URL_BASE}/nueva-contrasena/${token}`,
@@ -134,7 +134,7 @@ class MailController {
 
     // Definimos el email
     const mailOptions = {
-      from: process.env.ROOT_EMAIL_MAILGUN,
+      from: process.env.NEXT_PUBLIC_ROOT_EMAIL_MAILGUN,
       to: email,
       subject: 'Contraseña actualizada',
       text: `Su contraseña ha sido actualizada con éxito.`,
