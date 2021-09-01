@@ -38,6 +38,9 @@
             grid-gap: 20px;
             padding: 15px;
             grid-template-columns: 1fr 1fr;
+            @include media(mobile) {
+                grid-template-columns: 1fr;
+            }
         }
         .padding {
             padding: 15px;
