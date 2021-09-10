@@ -11,7 +11,6 @@ import useResponsive from '../../hooks/responsive.ts';
 const View = dynamic(() => import('./View'));
 
 const ProductCard = ({data}) => {
-    console.log('data', data);
     const [showAlert, setShowAlert] = useState(false)
 	const products = useSelector(state => state.cart.list)
     const inCart = products.find(e => e.id === data.id)

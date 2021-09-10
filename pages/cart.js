@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import TableOrder from '../components/TableOrder';
 import ItemCard from '../components/Product/ItemCart';
@@ -7,11 +7,16 @@ import Sticky from 'react-stickynode'
 import Link from 'next/link'
 import { Tooltip } from 'react-tippy'
 import * as checkoutActions from '../redux/actions/checkout'
+import { createDataTree } from '../hooks/hooks'
+import * as generalActions from '../redux/actions/general'
 
-export default function Index() {
+export default function Index({categories}) {
     const dispatch = useDispatch()
     const products = useSelector(state => state.cart.list)
     const userCanOrder = userCanPurchase()
+	useEffect(() => {
+		dispatch(generalActions.setCategories(categories))
+	}, [categories])
     
     const renderButtonConfirm = () => {
         if(userCanOrder) {
@@ -68,4 +73,17 @@ export default function Index() {
             </div>
         </div>
 	)
+}
+
+export async function getServerSideProps() {
+	const resCategory = await fetch(
+		process.env.URL_BASE + '/api/category'
+	)
+	const jsonCategory = await resCategory.json()
+		
+	return {
+		props: {
+			categories: createDataTree(jsonCategory.data)
+		},
+	}
 }

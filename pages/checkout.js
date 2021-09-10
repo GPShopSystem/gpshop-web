@@ -1,11 +1,19 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import TableOrder from '../components/TableOrder';
 import Sticky from 'react-stickynode'
 import Steps from '../containers/checkout'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
+import { createDataTree } from '../hooks/hooks'
+import * as generalActions from '../redux/actions/general'
 
-export default function Index() {
+export default function Index({categories}) {
     const currentStep = useSelector(state => state.checkout.currentStep)
+    const dispatch = useDispatch()
+
+	useEffect(() => {
+		dispatch(generalActions.setCategories(categories))
+	}, [categories])
+
     return (
         <div className="pageCheckout">
             <div className="pageCheckout-item pageCheckout-information boxBorder">
@@ -27,4 +35,17 @@ export default function Index() {
             
         </div>
 	)
+}
+
+export async function getServerSideProps() {
+	const resCategory = await fetch(
+		process.env.URL_BASE + '/api/category'
+	)
+	const jsonCategory = await resCategory.json()
+		
+	return {
+		props: {
+			categories: createDataTree(jsonCategory.data)
+		},
+	}
 }

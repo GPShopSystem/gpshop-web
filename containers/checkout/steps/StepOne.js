@@ -22,11 +22,6 @@ const StepOne = () => {
     
     const { handleSubmit, register, errors } = useForm();
 
-    const validateTypeRuc = () => {
-        if(info.numDoc?.substring(0,2) == '10') return /^\d{11,11}$/i
-        return /^\d{12,12}$/i
-    }
-
     const submit = handleSubmit((data) => {
         if (Object.keys(errors).length === 0){
             dispatch(checkoutTypes.updateUserData('stepOne', {...info, ...data}))
@@ -120,7 +115,7 @@ const StepOne = () => {
                     ref={register({
                         required: 'Este campo es requerido',
                         pattern: {
-                            value: info.typeDoc == 1 ? /^\d{8,8}$/i : validateTypeRuc(),
+                            value: info.typeDoc == 1 ? /^\d{8,8}$/i : /^\d{11,11}$/i,
                             message: "Ingrese un documento válido."
                         }
                     })}
