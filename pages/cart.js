@@ -75,7 +75,7 @@ export default function Index({categories}) {
 	)
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 	const resCategory = await fetch(
 		process.env.URL_BASE + '/api/category'
 	)

@@ -29,7 +29,7 @@ export default function Index({ products, categories }) {
 	)
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
 	const resProducts = await fetch(
 		process.env.URL_BASE + '/api/products/'
 	)
