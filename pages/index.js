@@ -28,7 +28,7 @@ export default function Index({ categories }) {
 
 	const renderProducts = () => {
 		if(loadingProducts) {
-			return Array.from(Array(10).keys()).map(e => <div key={e} className="productCard_skeleton"></div>)
+			return Array.from(Array(5).keys()).map(e => <div key={e} className="productCard_skeleton"></div>)
 		}
 		return products.map(e => <ProductCard key={e.id} data={e} />)
 	}
