@@ -83,6 +83,30 @@
             margin-top: 20px;
             zoom: 1.1;
         }
+        &-security {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 15px;
+            @include media(mobile) {
+                gap: 10px;
+            }
+            li {
+                background: #fff3df;
+                padding: 10px;
+                color: #fbb03b;
+                border-radius: 0px;
+                display: flex;
+                align-items: center;
+                border-radius: 5px;
+                font-size: 12px;
+                flex-direction: column;
+                span {
+                    text-align: center;
+                }
+            }
+        }
     }
     &-close {
         position: absolute;

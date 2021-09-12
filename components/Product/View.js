@@ -3,7 +3,7 @@ import Router from 'next/router';
 import Buttons from './Buttons';
 import { useSelector } from 'react-redux'
 // import ActionInput from './ActionInput';
-import { XCircle, ArrowLeft } from 'react-feather'
+import { XCircle, ArrowLeft, Truck, DollarSign, Shield } from 'react-feather'
 
 const View = ({ product, showButtonBack, isModal, onClose, buttons = true }) => {
 	const products = useSelector(state => state.cart.list)
@@ -39,6 +39,13 @@ const View = ({ product, showButtonBack, isModal, onClose, buttons = true }) => 
 						)
 					}
 				</div>
+				<div>
+					<ul className="viewProduct-right-security">
+						<li><Truck size={14} /> <span>Envío a domicilio</span></li>
+						<li><Shield size={14} /> <span>Seguridad garantizada</span></li>
+					</ul>
+				</div>
+
 				<p><b>Presentación: </b> Paquete de 12 unidades</p>
 				<p className="viewProduct-right-description">
 					{product.description}

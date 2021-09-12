@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Search from '../../Search';
 import Image from 'next/image'
-import { ShoppingBag, Menu, Search as SearchIcon } from 'react-feather'
+import { ShoppingBag, Menu, Search as SearchIcon, PhoneCall } from 'react-feather'
 import { useDispatch, useSelector } from 'react-redux'
 import * as cartActions from '../../../redux/actions/cart'
 import * as cartGeneral from '../../../redux/actions/general'
@@ -67,6 +67,13 @@ const Header = () => {
                                 }}} />
                             </div>
                          )
+                    }
+                    {
+                        !isMobile && (
+                            <div className="header-right-cart" style={{marginRight: 8}}>
+                                <PhoneCall style={{marginRight: 5}} /> +51 936275556 
+                            </div>
+                        )
                     }
                     
                     <div className="header-right-cart">
