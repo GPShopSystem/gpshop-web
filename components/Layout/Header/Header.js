@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Search from '../../Search';
 import Image from 'next/image'
-import { ShoppingBag, Menu } from 'react-feather'
+import { ShoppingBag, Menu, Search as SearchIcon } from 'react-feather'
 import { useDispatch, useSelector } from 'react-redux'
 import * as cartActions from '../../../redux/actions/cart'
 import * as cartGeneral from '../../../redux/actions/general'
@@ -10,8 +10,10 @@ import Link from 'next/link'
 
 const Header = () => {
     const openMenu = useSelector(state => state.general.toggleMenu)
+    const [openSearch, setOpenSearch] = useState(false)
     const dispatch = useDispatch()
     const responsive = useResponsive()
+    const isMobile = responsive.md || responsive.sm
 	const cart_total = useSelector(state => state.cart.list.reduce((a,b) => {
         return a + b.quantity
     }, 0))
@@ -21,32 +23,52 @@ const Header = () => {
         dispatch(cartActions.setCart(JSON.parse(data) || []))
     }, [])
 
+    const renderSearch = () => {
+        if(isMobile) {
+            if(openSearch) return <Search placeholder="¿Qué productos necesitas?" icon />
+        } else {
+            return <Search placeholder="¿Qué productos necesitas?" icon />
+        }
+    }
+
     return ( <>
-        <div className="header-float">
+        <div className="header-float" style={{ height: isMobile && openSearch ? 135 : null}}>
             <Link href={'/'}>
                 <a>
                     <div className="header-branding">
                         <Image
                             alt="GPSHOP logo"
                             src="/static/img/logo.png"
-                            width={responsive.md || responsive.sm ? 80 : 96.85}
-                            height={responsive.md || responsive.sm ? 44.5 : 53.86}
+                            width={isMobile ? 80 : 96.85}
+                            height={isMobile ? 44.5 : 53.86}
                         />
                     </div>
                 </a>
             </Link>
             <div className="header-form">
                 {
-                    (responsive.md || responsive.sm) && (<div className="topMobile left">
+                    (isMobile) && (<div className="topMobile left">
                             <Menu onClick={() => {{
                                 dispatch(cartGeneral.toggleMenu(!openMenu))
                             }}} />
                     </div>)
                 }
-                
-                <Search placeholder="¿Qué productos necesitas?" icon />
+
+                {
+                    renderSearch()
+                }
                 
                 <div className="header-right topMobile right">
+                    {
+                         (isMobile) && (
+                            <div className="header-right-cart" style={{marginRight: 8}}>
+                                <SearchIcon onClick={() => {{
+                                    setOpenSearch(!openSearch)
+                                }}} />
+                            </div>
+                         )
+                    }
+                    
                     <div className="header-right-cart">
                         <ShoppingBag onClick={() => {{
                             dispatch(cartActions.toggleCart(true))
