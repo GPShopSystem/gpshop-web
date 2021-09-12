@@ -96,10 +96,10 @@
     }
     &-count {
         display: flex;
-        align-items: flex-end;
         justify-content: space-between;
+        align-items: center;
         @include media(mobile) {
-            align-items: baseline;
+            align-items: center;
             justify-content: space-between;
             width: 100%;
         }

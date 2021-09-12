@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { XCircle, Minus, Plus } from 'react-feather'
+import { XCircle, Minus, Plus, Trash } from 'react-feather'
 import { useDispatch } from 'react-redux'
 import * as cartActions from '../../redux/actions/cart'
 
@@ -71,7 +71,11 @@ const ItemCard = ({data}) => {
                 </div>
                 <div className="itemcart-count">
                     <div className="itemcart-count-wrapper">
-                        <span className="itemcart-count-update decrement" onClick={removeToCart}><Minus size={14} /></span>
+                        <span className="itemcart-count-update decrement" onClick={removeToCart}>
+                            {
+                                count === 1 ? <Trash size={14} /> : <Minus size={14} />
+                            }
+                        </span>
                         <span className="itemcart-count-value">
                             <input 
                                 className="input"

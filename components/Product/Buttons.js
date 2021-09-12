@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Minus } from 'react-feather'
+import { Plus, Minus, Trash } from 'react-feather'
 import { useDispatch } from 'react-redux'
 import * as cartActions from '../../redux/actions/cart'
 
@@ -75,7 +75,11 @@ const Buttons = ({ data, cart, openAlert }) => {
     )
     const renderButtonsCount = () => (
         <div className="productCard-count">
-            <span className="itemcart-count-update decrement" onClick={removeToCart}><Minus size={14} /></span>
+            <span className="itemcart-count-update decrement" onClick={removeToCart}>
+                {
+                    count === 1 ? <Trash size={14} /> : <Minus size={14} />
+                }
+            </span>
             <span className="itemcart-count-value">
                 <input 
                     onBlur={onBlur}
