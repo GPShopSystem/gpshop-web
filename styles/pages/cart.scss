@@ -16,6 +16,12 @@
         }
         &.products {
             width: 100%;
+            @include media(mobile) {
+                .itemcart{
+                    flex-flow: column;
+                    padding: 30px;
+                }
+            }
         }
     }
     .empty{

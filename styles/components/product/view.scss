@@ -23,6 +23,9 @@
         }
         img {
             max-width: 100%;
+            @include media(mobile) {
+                margin-top: 40px;
+            }
         }
     }
     &-right {
@@ -41,6 +44,9 @@
             margin-bottom: 8px;
             margin-top: 0; 
             overflow-wrap: break-word;
+            @include media(mobile) {
+                font-size: 26px;
+            }
         }
         &-price {
             display: flex;
