@@ -9,6 +9,7 @@ import Layout from '../components/Layout'
 import { Modal } from '@redq/reuse-modal';
 import ButtonFloatingOrder from '../components/ButtonFloatingOrder'
 import HeaderMobile from '../components/Layout/Header/HeaderMobile'
+import ViewSidebar from '../components/Product/ViewSidebar'
 
 const ProgressBar = dynamic(
 	() => {
@@ -69,6 +70,7 @@ class MyApp extends App {
 				<ButtonFloatingOrder />
 				<HeaderMobile />
         		<Modal />
+				<ViewSidebar />
 				<FloatingWhatsApp 
 					accountName='GPSHOP' 
 					phoneNumber='51940147037'

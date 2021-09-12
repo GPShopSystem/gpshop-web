@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 // import ActionInput from './ActionInput';
 import { XCircle, ArrowLeft } from 'react-feather'
 
-const View = ({ product, showButtonBack, isModal, onClose }) => {
+const View = ({ product, showButtonBack, isModal, onClose, buttons = true }) => {
 	const products = useSelector(state => state.cart.list)
     const inCart = products.find(e => e.id === product.id)
     const isOffer = product.active_discount !== 0
@@ -43,10 +43,16 @@ const View = ({ product, showButtonBack, isModal, onClose }) => {
 				<p className="viewProduct-right-description">
 					{product.description}
 				</p>
-				<div className="viewProduct-right-action"> 
-                    {/* <ActionInput data={product} /> */}
-					<Buttons cart={inCart} data={product} />
-				</div>
+				
+				{
+					buttons && (
+						<div className="viewProduct-right-action"> 
+							{/* <ActionInput data={product} /> */}
+							<Buttons cart={inCart} data={product} />
+						</div>
+					)
+				}
+				
 			</div>
 		</div>
      );

@@ -13,3 +13,17 @@ export const toggleMenu = (active) => {
         payload: active
     }
 }
+
+export const setProduct = (list) => {
+    return {
+        type: generalTypes.GENERAL_SET_PRODUCT,
+        payload: list
+    }
+}
+
+export const toggleProduct = (active) => {
+    return {
+        type: generalTypes.GENERAL_TOGGLE_PRODUCT,
+        payload: active
+    }
+}
