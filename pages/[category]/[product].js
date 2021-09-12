@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux'
 import * as generalActions from '../../redux/actions/general'
 import { createDataTree } from '../../hooks/hooks'
@@ -7,8 +7,26 @@ import ProductCard from '../../components/Product/Card';
 import Head from 'next/head'
 
 export default function Index({ product, categories }) {
+	console.log('product', product)
 	const dispatch = useDispatch()
+	const [products, setProducts] = useState([])
+	const [loadingProducts, setLoadingProducts] = useState(true)
+	const [showRelated, setShowRelated] = useState(true)
 	const showButtonBack = typeof window !== 'undefined' && window.history.length > 2
+	const resProducts = async () => {
+		const getList = await fetch(
+			process.env.NEXT_PUBLIC_URL_BASE + '/api/products/related?id=' + product.category_id
+		)
+		const json = await getList.json()
+		const listProducts = json.data.filter(e => e.id !== product.id);
+		setProducts(listProducts)
+		setLoadingProducts(false);
+		setShowRelated(listProducts.length !== 0);
+	} 
+
+	useEffect(() => {
+		resProducts();
+	},[])
 
 	useEffect(() => {
 		dispatch(generalActions.setCategories(categories))
@@ -16,6 +34,13 @@ export default function Index({ product, categories }) {
 
 	if(!product.id){
 		return 'No existe este producto'
+	}
+
+	const renderProducts = () => {
+		if(loadingProducts) {
+			return Array.from(Array(5).keys()).map(e => <div key={e} className="productCard_skeleton"></div>)
+		}
+		return products.map(e => <ProductCard key={e.id} data={e} />)
 	}
 	
 	return (
@@ -25,17 +50,16 @@ export default function Index({ product, categories }) {
 			</Head>
 			<View product={product} showButtonBack={showButtonBack} />
 			{
-				false && (<>
-					<h2>Tal vez te interese...</h2>
-					<div className="productList" style={{marginTop: 20}}>
-						{
-							['', '', '', '', '', ''].map(e => <ProductCard key={e.id} data={{
-								price: 12,
-								original_price: 13
-							}} />)
-						}
-					</div>
-				</>)
+				showRelated && (
+					<>
+						<h2>Tal vez te interese...</h2>
+						<div className="productList" style={{marginTop: 20}}>
+							{
+								renderProducts()
+							}
+						</div>
+					</>
+				)
 			}
 		</>
 	)

@@ -41,12 +41,12 @@ const Item = memo(({children,
     
     return (
         <div className="treemenu-item">
-            <div className="treemenu-item-title">
+            <div className="treemenu-item-title" onClick={onClick}>
                 <label className={ active ? 'active' : ''} >
                     <span className="thumb">
                         <Hash size={14} />
                     </span>    
-                    <span className="name" onClick={onClick} >
+                    <span className="name" >
                         {name}
                     </span>
                     {
