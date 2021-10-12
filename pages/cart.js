@@ -9,11 +9,15 @@ import { Tooltip } from 'react-tippy'
 import * as checkoutActions from '../redux/actions/checkout'
 import { createDataTree } from '../hooks/hooks'
 import * as generalActions from '../redux/actions/general'
+import useResponsive from '../hooks/responsive.ts';
 
 export default function Index({categories}) {
     const dispatch = useDispatch()
     const products = useSelector(state => state.cart.list)
     const userCanOrder = userCanPurchase()
+    const responsive = useResponsive()
+    const isMobile = responsive.md || responsive.sm
+    console.log(isMobile);
 	useEffect(() => {
 		dispatch(generalActions.setCategories(categories))
 	}, [categories])
@@ -62,7 +66,7 @@ export default function Index({categories}) {
                 }
             </div>
             <div className="pageCart-item">
-                <Sticky top={120} innerZ={999}>
+                <Sticky top={120} enabled={!isMobile} innerZ={999}>
                     <div className="widgetOrder boxBorder">
                         <h3>Resúmen del pedido</h3>
                         <TableOrder showTotalProducts />

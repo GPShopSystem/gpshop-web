@@ -7,11 +7,11 @@ class MyDocument extends Document {
 		return (
 			<Html lang="es-ES">
 				<Head>
-					<meta name="theme-color" content="#673ab7" />
 					<meta name="description" content="Somos una empresa comercializadora e importadora de artículos de limpieza. Trabajamos con marcas como Hude, Prolimso, Virutex, Dayr, Daryza y muchas más."/>
 					<meta name="keywords" content="hude, dayr, prolimso, proveedor de artículos de limpieza, gpshop"/>
 					<link rel="manifest" href="/static/manifest.json" />
 					<link rel="icon" href="/static/img/favicon.png" />
+					<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 				</Head>
 				<body>
 					<Main />

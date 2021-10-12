@@ -14,8 +14,8 @@ const Footer = ({ children }) => {
         <li>
             <h2>Redes sociales</h2>
             <ul className='box'>
-                <li><a href='#'>Instragram</a></li>
-                <li><a href='#'>Facebook</a></li>
+                <li><a href='https://www.instagram.com/gpshop_pe/' target='_blank'>Instragram</a></li>
+                <li><a href='https://www.facebook.com/globalperuvianshop' target='_blank'>Facebook</a></li>
             </ul>
         </li>
         <li className='features'>
@@ -28,7 +28,7 @@ const Footer = ({ children }) => {
         <li>
             <h2>Contáctanos</h2>
             <ul className='box'>
-                <li><a href='#'>wjharil@gmail.com</a></li>
+                <li><a href='#'>contacto@gpshop.pe</a></li>
             </ul>
         </li>
     </ul>

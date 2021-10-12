@@ -5,10 +5,13 @@ import Steps from '../containers/checkout'
 import { useSelector, useDispatch } from 'react-redux'
 import { createDataTree } from '../hooks/hooks'
 import * as generalActions from '../redux/actions/general'
+import useResponsive from '../hooks/responsive.ts'
 
 export default function Index({categories}) {
     const currentStep = useSelector(state => state.checkout.currentStep)
     const dispatch = useDispatch()
+    const responsive = useResponsive()
+    const isMobile = responsive.md || responsive.sm
 
 	useEffect(() => {
 		dispatch(generalActions.setCategories(categories))
@@ -23,7 +26,7 @@ export default function Index({categories}) {
             {
                 currentStep !== 4 && ( // ty-page
                     <div className="pageCheckout-item ">
-                        <Sticky top={120} innerZ={999}>
+                        <Sticky enabled={!isMobile}  top={80} innerZ={999}>
                             <div className="widgetOrder boxBorder">
                                 <h3>Resúmen del pedido</h3>
                                 <TableOrder showTotalProducts/>
