@@ -114,12 +114,6 @@
         transition: .15s ease-in-out;
         margin-top: auto;
         user-select: none;
-        @include media(mobile) {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-        }
         .label {
             flex-grow: 1;
             display: flex;
@@ -150,19 +144,13 @@
         margin-top: auto;
         user-select: none;
         position: relative;
-        @include media(mobile) {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-        }
         .itemcart-count-update {
             @include media(mobile) {
                 width: 25px;
             }
         }
         .itemcart-count-value {
-            width: auto;
+            width: min-content;
             flex-grow: 1;
             color: #2f53d0;
             background-color: white;

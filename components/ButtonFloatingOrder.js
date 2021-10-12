@@ -31,6 +31,7 @@ const ButtonFloatingOrder = () => {
     if(isEmptyCart || !showButton) {
         return <></>
     }
+    return ''
 
     return ( <div className="floatingButton">
         {renderButtonProccess()}

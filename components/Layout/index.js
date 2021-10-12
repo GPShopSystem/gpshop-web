@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import Sidebar from './Sidebar';
 import { useRouter } from 'next/router';
+import Footer from './Footer';
 
 const Layout = ({ children }) => {
     const router = useRouter();
@@ -14,6 +15,8 @@ const Layout = ({ children }) => {
         { showSidebar && (<Sidebar className='layout-sidebar-left' />) }
         <div className={`layout-content ${!showSidebar ? 'whsidebar' : ''}`}>
             { children }
+
+            <Footer />
         </div>
     </div>);
 }
