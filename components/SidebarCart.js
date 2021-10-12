@@ -5,9 +5,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import * as cartActions from '../redux/actions/cart'
 import * as checkoutActions from '../redux/actions/checkout'
 import { useTotalCartPrice, userCanOrder as userCanPurchase } from '../hooks/hooks'
-import Link from 'next/link';
-import ItemCard from './Product/ItemCart';
-import { Tooltip } from 'react-tippy';
+import Link from 'next/link'
+import ItemCard from './Product/ItemCart'
+import { Tooltip } from 'react-tippy'
 
 const SidebarCart = () => {
     const dispatch = useDispatch()

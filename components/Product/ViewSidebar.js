@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { X } from 'react-feather'
 import { Scrollbars } from 'react-custom-scrollbars'
 import { useDispatch, useSelector } from 'react-redux'
 import * as generalActions from '../../redux/actions/general'
-import dynamic from 'next/dynamic';
-import { useRouter } from 'next/router';
-import Buttons from './Buttons';
+import dynamic from 'next/dynamic'
+import { useRouter } from 'next/router'
+import Buttons from './Buttons'
+import AlertAdded from './AlertAdded'
+import Link from 'next/link'
 const View = dynamic(() => import('./View'));
 
 const ViewSidebar = () => {
@@ -16,23 +18,24 @@ const ViewSidebar = () => {
 	const showSidebarProduct = selectGen.toggleProduct
 	const product = selectGen.product
     const inCart = products.find(e => e.id === product?.id)
+    const [showAlert, setShowAlert] = useState(true)
 
     useEffect(() => {
         document.body.style.overflow = showSidebarProduct ? 'hidden' : 'auto';
     }, [showSidebarProduct])
 
-    const closeCart = () => {
+    const closeSidebar = () => {
         const { pathname, query } = router
         router.push({ pathname, query }, undefined, { shallow: true })
         dispatch(generalActions.toggleProduct(false))
     }
 
     return ( <>
-        <div className={`sidebarCart-back ${showSidebarProduct ? 'active' : ''}`} onClick={closeCart} />
+        <div className={`sidebarCart-back ${showSidebarProduct ? 'active' : ''}`} onClick={closeSidebar} />
         <div className={`sidebarCart sidebarProduct ${showSidebarProduct ? 'open' : ''}`}>
             <div className="sidebarCart-header">
                 <h2>{product.title}</h2>
-                <div className="sidebarCart-header-close" onClick={closeCart}><X /></div>
+                <div className="sidebarCart-header-close" onClick={closeSidebar}><X /></div>
             </div>
             <Scrollbars 
                 universal
@@ -45,16 +48,21 @@ const ViewSidebar = () => {
                     style={{
                         ...props.style,
                         flexFrow: 2,
-                        height: '100%'
+                        height: '100%',
+                        position: 'initial'
                     }}
                     className="sidebarCart-cart-content-items"
                 />
                 )}
                 >
                 { product.title && <View buttons={false} product={product} />} 
+                <AlertAdded show={showAlert} onFinish={() => setShowAlert(false)}/>
             </Scrollbars>
-            <div className='viewProduct-buttons'>
-                <Buttons cart={inCart} data={product} />
+            <div className='viewProduct-buttons' style={{paddingBottom: 15}}>
+                <Buttons openAlert={() => setShowAlert(true)} cart={inCart} data={product} />
+            </div>
+            <div className='sidebarCart-cart-total' style={{paddingBottom: 20}} onClick={() => closeSidebar()}>
+                <Link href="/cart"> Ir al carrito </Link>
             </div>
         </div>
     </>);

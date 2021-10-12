@@ -38,7 +38,7 @@ const ActionInput = () => {
                 <div className="actionInput-input-actions-minus" onClick={onMinus}><Minus size={14} /></div>
             </div>
         </div>
-        <div className="actionInput-button">Agregar</div>
+        <div className="actionInput-button">AÑADIR</div>
     </div> );
 }
  

@@ -69,7 +69,7 @@ const Buttons = ({ data, cart, openAlert }) => {
 
     const renderButtonAddCart = () => (
         <div className="productCard-add" onClick={addToCartFirst}>
-            <span className="label">AGREGAR</span>
+            <span className="label">AÑADIR</span>
             <span className="icon increment"><Plus size={14} /></span>
         </div>
     )

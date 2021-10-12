@@ -25,7 +25,7 @@
             position: relative;
             background-size: cover;
             background-repeat: no-repeat;
-            background-size: 172px auto;
+            background-size: 180px auto;
             background-position: center center;
             .quickView {
                 cursor: pointer;
@@ -61,6 +61,9 @@
         flex-grow: 1;
         display: flex;
         flex-direction: column;
+        @include media(mobile) {
+            padding: 15px 15px 15px;
+        }
     }
     &-title {
         display: block;
@@ -69,6 +72,7 @@
         transition: .15s ease-in-out;
         margin-bottom: 5px;
         cursor: pointer;
+        overflow-wrap: break-word;
         &:hover {
             text-decoration: underline;
         }
@@ -110,6 +114,12 @@
         transition: .15s ease-in-out;
         margin-top: auto;
         user-select: none;
+        @include media(mobile) {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
         .label {
             flex-grow: 1;
             display: flex;
@@ -140,19 +150,31 @@
         margin-top: auto;
         user-select: none;
         position: relative;
+        @include media(mobile) {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+        .itemcart-count-update {
+            @include media(mobile) {
+                width: 25px;
+            }
+        }
         .itemcart-count-value {
             width: auto;
             flex-grow: 1;
             color: #2f53d0;
             background-color: white;
+            border: 1px solid #2f53d0;
             input {
                 text-align: center;
                 color: #2f53d0;
                 font-weight: 600;
                 font-size: 14px;
-                border: 1px solid #2f53d0;
                 height: 100%;
                 width: 100%;
+                border: 0;
                 &:active, &:focus {
                     outline: none;
                 }
@@ -181,7 +203,7 @@
         position: absolute;
         top: 0;
         padding: 10px;
-        width: auto;
+        width: 100%;
         background: #2f53d0;
         left: 0;
         font-size: 12px;

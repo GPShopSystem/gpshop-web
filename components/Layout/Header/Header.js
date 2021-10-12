@@ -71,7 +71,7 @@ const Header = () => {
                     {
                         !isMobile && (
                             <div className="header-right-cart" style={{marginRight: 8}}>
-                                <PhoneCall style={{marginRight: 5}} /> +51 936275556 
+                                <PhoneCall style={{marginRight: 5}} /> +51 936 257 271 
                             </div>
                         )
                     }
