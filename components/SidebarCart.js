@@ -11,13 +11,25 @@ import { Tooltip } from 'react-tippy'
 
 const SidebarCart = () => {
     const dispatch = useDispatch()
-	const showSidebarCart = useSelector(state => state.cart.toggleCart)
-	const modeCart = useSelector(state => state.cart.toggleCartMode)
-	const products = useSelector(state => state.cart.list)
+		const cleanCart = () => dispatch(cartActions.resetCart())
+		const showSidebarCart = useSelector(state => state.cart.toggleCart)
+		const modeCart = useSelector(state => state.cart.toggleCartMode)
+		const products = useSelector(state => state.cart.list)
     const isEmptyCart = products.length === 0
     const totalPrice = useTotalCartPrice()
     const userCanOrder = userCanPurchase()
     const currency = process.env.currency
+
+		const sendOrderWhatsapp = () => {
+			const data = localStorage.getItem("myCart")
+			const dataParsed = JSON.parse(data) || [];
+
+			const text = `Hola, quisiera una cotización de los siguientes productos:
+				${dataParsed.map(order => `\n - ${order.sku} | ${order.title}(${order.quantity} ${order.quantity === 1 ? 'unidad' : 'unidades'})`)}`;
+			const textEncode = encodeURIComponent(text);
+			const url = `https://api.whatsapp.com/send?phone=51940147037&text=${textEncode.replace(/,/g, '')}`;
+			window.open(url);
+		}
 
     useEffect(() => {
         document.body.style.overflow = showSidebarCart ? 'hidden' : 'auto';
@@ -42,19 +54,23 @@ const SidebarCart = () => {
                 </div>
             )
         }
-        
+
         if(userCanOrder) {
             return (
                 <div className="sidebarCart-cart-total" onClick={() => {
-                    dispatch(checkoutActions.changeStep(1))
-                    closeCart()
+                    // dispatch(checkoutActions.changeStep(1))
+                    // closeCart()
+										sendOrderWhatsapp()
                 }}>
-                    <Link href="/checkout">
+									<a>
+										<span className="label">Enviar pedido</span>
+									</a>
+                    {/*<Link href="/checkout">
                         <a>
-                            <span className="label">Procesar pedido</span>
+                            <span className="label">Enviar pedido</span>
                             { amount }
                         </a>
-                    </Link>
+                    </Link>*/}
                 </div>
             )
         } else {
@@ -77,7 +93,7 @@ const SidebarCart = () => {
         }
         return (
             <>
-                <Scrollbars 
+                <Scrollbars
                     universal
                     autoHeight
                     autoHeightMax={"100vh"}
@@ -105,20 +121,26 @@ const SidebarCart = () => {
 
     return ( <>
         <div className={`sidebarCart-back ${showSidebarCart ? 'active' : ''}`} onClick={closeCart} />
-        
+
         <div className={`sidebarCart ${showSidebarCart ? 'open' : ''} ${isEmptyCart ? 'isEmpty' : ''}`}>
             <div className="sidebarCart-header">
                 <h2>Lista de pedidos</h2>
                 <div className="sidebarCart-header-close" onClick={closeCart}><X /></div>
             </div>
             <div className="sidebarCart-cart">
-                {
+                {/*{
                     !isEmptyCart && (
                         <div className="sidebarCart-cart-minimum">
                             Pedido mínimo: S/.10
                         </div>
                     )
-                }
+                }*/}
+							<div className='sidebarCart-clean-cart' onClick={() => {
+								cleanCart()
+								closeCart()
+							}}>
+									<span>Limpiar carrito</span>
+								</div>
                 <div className="sidebarCart-cart-content">
                     { renderContent() }
                 </div>
@@ -126,5 +148,5 @@ const SidebarCart = () => {
         </div>
     </>);
 }
- 
+
 export default SidebarCart;

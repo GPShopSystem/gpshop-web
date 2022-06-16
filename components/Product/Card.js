@@ -16,7 +16,7 @@ const ProductCard = ({data}) => {
     const isOffer = data.active_discount !== 0
     const priceToShow = isOffer ? data.original_price : data.price
     const currency = process.env.currency
-    
+
     const handleQuickViewModal = () => {
         const { pathname, query } = router;
         const as = `/${data.catSlug}/${data.slug}`;
@@ -32,14 +32,14 @@ const ProductCard = ({data}) => {
     return (
         <div className="productCard useProduct">
             <div className="productCard-thumb" onClick={handleQuickViewModal}>
-                <div 
-                    className="productCard-thumb-image" 
+                <div
+                    className="productCard-thumb-image"
                     style={{backgroundImage: 'url('+data.image+')'}}
                     >
                     <div className="quickView"><Eye color={'#fff'} size={40} /></div>
                 </div>
                 {
-                    isOffer && ( 
+                    isOffer && (
                         <img className="tagPrice" src="https://images.ctfassets.net/dfhnfm93fvnr/2hQ3nJFWnaybKBaNulT7BP/ead7556968adf9bd5ac8d1ed0a8cd3cd/preciazos.svg?q=75" />
                     )
                 }
@@ -56,19 +56,19 @@ const ProductCard = ({data}) => {
                     {data.presentation}
                 </div>
 
-                <div className={`productCard-price ${isOffer ? 'offer' : ''}`}>
+                {/*<div className={`productCard-price ${isOffer ? 'offer' : ''}`}>
                     <span className="price">{currency}{priceToShow.toFixed(2)}</span>
                     {
                         isOffer && (
                             <span className="price promo">{currency}{data.price.toFixed(2)}</span>
                         )
                     }
-                </div>
-                
+                </div>*/}
+
                 <Buttons openAlert={() => setShowAlert(true)} data={data} cart={inCart} />
             </div>
         </div>
     );
 }
- 
+
 export default ProductCard;

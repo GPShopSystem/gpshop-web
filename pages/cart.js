@@ -21,14 +21,14 @@ export default function Index({categories}) {
 	useEffect(() => {
 		dispatch(generalActions.setCategories(categories))
 	}, [categories])
-    
+
     const renderButtonConfirm = () => {
         if(userCanOrder) {
             return (
                 <Link href="/checkout">
-                    <div 
-                        className="button-black" 
-                        style={{marginTop: 20}} 
+                    <div
+                        className="button-black"
+                        style={{marginTop: 20}}
                         onClick={() => dispatch(checkoutActions.changeStep(1))}
                     >
                         <span className="label">Confirmar pedido</span>
@@ -38,8 +38,8 @@ export default function Index({categories}) {
         } else {
             return (
                 <Tooltip style={{display: 'block'}} arrow title="El pedido mínimo es de S/.10">
-                    <div 
-                        className="button-black disabled" 
+                    <div
+                        className="button-black disabled"
                         style={{marginTop: 20}}
                     >
                         <span className="label">Procesar pedido</span>
@@ -70,7 +70,7 @@ export default function Index({categories}) {
                     <div className="widgetOrder boxBorder">
                         <h3>Resúmen del pedido</h3>
                         <TableOrder showTotalProducts />
-                        
+
                         {renderButtonConfirm()}
                     </div>
                 </Sticky>
@@ -84,7 +84,7 @@ export async function getStaticProps() {
 		process.env.URL_BASE + '/api/category'
 	)
 	const jsonCategory = await resCategory.json()
-		
+
 	return {
 		props: {
 			categories: createDataTree(jsonCategory.data)

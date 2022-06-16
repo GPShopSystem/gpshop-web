@@ -10,11 +10,11 @@ const ItemCard = ({data}) => {
     const currency = process.env.currency
     const isOffer = data.active_discount !== 0
     const priceToShow = isOffer ? data.original_price : data.price
-    
+
     const manualDispatchUpdate = (q) => {
         dispatch(cartActions.updateCountItemCart({...data, quantity: q}))
     }
-    
+
     useEffect(() => {
         if(count > 0) manualDispatchUpdate(count)
     },[count]);
@@ -48,9 +48,9 @@ const ItemCard = ({data}) => {
     return (
         <div className="itemcart">
             <div className="itemcart-thumb">
-                <img 
+                <img
                     alt={data.title}
-                    src={data.image} 
+                    src={data.image}
                     />
                 <span onClick={cleanItemCart} className="remove" href="#"><XCircle color={"#FFF"} /></span>
             </div>
@@ -61,14 +61,14 @@ const ItemCard = ({data}) => {
                 <div className="itemcart-description">
                     {data.presentation}
                 </div>
-                <div className={`itemcart-price ${isOffer ? 'offer' : ''}`}>
+                {/*<div className={`itemcart-price ${isOffer ? 'offer' : ''}`}>
                     <span className="price">{currency}{priceToShow.toFixed(2)}</span>
                     {
                         isOffer && (
                             <span className="price promo">{currency}{data.price.toFixed(2)}</span>
                         )
                     }
-                </div>
+                </div>*/}
                 <div className="itemcart-count">
                     <div className="itemcart-count-wrapper">
                         <span className="itemcart-count-update decrement" onClick={removeToCart}>
@@ -77,23 +77,23 @@ const ItemCard = ({data}) => {
                             }
                         </span>
                         <span className="itemcart-count-value">
-                            <input 
+                            <input
                                 className="input"
                                 onBlur={onBlur}
                                 onChange={onchange}
-                                type="text" 
+                                type="text"
                                 value={count}
                                 size="4" />
                         </span>
                         <span className="itemcart-count-update increment" onClick={() => setCount(count + 1)}><Plus size={14} /></span>
                     </div>
-                    <div className="itemcart-count-total">
+                    {/*<div className="itemcart-count-total">
                         {currency}{(data.price * data.quantity).toFixed(2)}
-                    </div>
+                    </div>*/}
                 </div>
             </div>
         </div>
     )
 }
- 
+
 export default ItemCard;
