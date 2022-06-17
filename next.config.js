@@ -3,7 +3,7 @@ const path = require('path')
 
 
 module.exports = {
-	target: 'serverless',
+	target: 'server',
 	workboxOpts: {
 		swDest: 'static/service-worker.js',
 		runtimeCaching: [
