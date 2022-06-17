@@ -48,8 +48,5 @@ module.exports = {
 	},
 	env: {
 		currency: process.env.CURRENCY,
-	},
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
+	}
 }
