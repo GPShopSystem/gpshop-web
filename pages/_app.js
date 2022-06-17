@@ -11,26 +11,6 @@ import ButtonFloatingOrder from '../components/ButtonFloatingOrder'
 import HeaderMobile from '../components/Layout/Header/HeaderMobile'
 import ViewSidebar from '../components/Product/ViewSidebar'
 
-const ProgressBar = dynamic(
-	() => {
-	  return import('../components/Progress')
-	},
-	{ ssr: false },
-)
-const Header = dynamic(
-	() => {
-	  return import('../components/Layout/Header/Header')
-	},
-	{ ssr: false },
-)
-
-const FloatingWhatsApp = dynamic(
-	() => {
-	  return import('react-floating-whatsapp')
-	},
-	{ ssr: false },
-)
-
 class MyApp extends App {
 	static async getInitialProps({ Component, ctx }) {
 		return {
@@ -59,25 +39,6 @@ class MyApp extends App {
 						content="width=device-width, initial-scale=1.0"
 					/>
 				</Head>
-				<ProgressBar />
-				<header>
-					<Header />
-				</header>
-				<Layout sidebar>
-					<Component {...pageProps} />
-				</Layout>
-				<SidebarCart />
-				<ButtonFloatingOrder />
-				<HeaderMobile />
-        		<Modal />
-				<ViewSidebar />
-				<FloatingWhatsApp 
-					accountName='GPSHOP' 
-					phoneNumber='51940147037'
-					chatMessage='Hola! 🤝¿podemos ayudarte?' 
-					placeholder='Escribe tu mensaje...'
-					statusMessage='Normalmente la respuesta es de 13 minutos'
-				/>
 			</>
 		)
 	}
