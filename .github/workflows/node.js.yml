@@ -29,6 +29,7 @@ jobs:
     - name: Build
       env:
         URL_BASE: ${{ secrets.URL_BASE }}
+        NEXT_PUBLIC_URL_BASE: ${{ secrets.NEXT_PUBLIC_URL_BASE }}
         MONGO: ${{ secrets.MONGO }}
         MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
         MYSQL_USER: ${{ secrets.MYSQL_USER }}
