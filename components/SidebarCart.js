@@ -27,7 +27,7 @@ const SidebarCart = () => {
 			const text = `Hola, quisiera una cotización de los siguientes productos:
 				${dataParsed.map(order => `\n - ${order.sku} | ${order.title}(${order.quantity} ${order.quantity === 1 ? 'unidad' : 'unidades'})`)}`;
 			const textEncode = encodeURIComponent(text);
-			const url = `https://api.whatsapp.com/send?phone=51940147037&text=${textEncode.replace(/,/g, '')}`;
+			const url = `https://api.whatsapp.com/send?phone=51940147037&text=${textEncode}`;
 			window.open(url);
 		}
 
