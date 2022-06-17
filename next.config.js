@@ -1,8 +1,7 @@
 module.exports = {
-  target: 'server',
-    exportPathMap: function() {
-      return {
-        '/': { page: '/' }
-      };
-    }
-  };
+  exportPathMap: function() {
+    return {
+      '/': { page: '/' }
+    };
+  }
+};
