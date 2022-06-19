@@ -8,11 +8,14 @@ import { useRouter } from 'next/router'
 import Buttons from './Buttons'
 import AlertAdded from './AlertAdded'
 import Link from 'next/link'
+import useResponsive from '../../hooks/responsive.ts'
 const View = dynamic(() => import('./View'));
 
 const ViewSidebar = () => {
     const router = useRouter();
     const dispatch = useDispatch()
+	const responsive = useResponsive()
+	const isMobile = responsive.md || responsive.sm
 	const selectGen = useSelector(state => state.general)
 	const products = useSelector(state => state.cart.list)
 	const showSidebarProduct = selectGen.toggleProduct
@@ -40,7 +43,7 @@ const ViewSidebar = () => {
 		`;
 		const textEncode = encodeURI(text);
 		const url = `https://api.whatsapp.com/send?phone=51940147037&text=${textEncode}`;
-		window.open(url);
+		window.open(url, isMobile ? '_self' : '_blank');
 	}
 
     return ( <>

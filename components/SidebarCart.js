@@ -8,10 +8,13 @@ import { useTotalCartPrice, userCanOrder as userCanPurchase } from '../hooks/hoo
 import Link from 'next/link'
 import ItemCard from './Product/ItemCart'
 import { Tooltip } from 'react-tippy'
+import useResponsive from '../hooks/responsive.ts'
 
 const SidebarCart = () => {
     const dispatch = useDispatch()
 		const cleanCart = () => dispatch(cartActions.resetCart())
+	const responsive = useResponsive()
+	const isMobile = responsive.md || responsive.sm
 		const showSidebarCart = useSelector(state => state.cart.toggleCart)
 		const modeCart = useSelector(state => state.cart.toggleCartMode)
 		const products = useSelector(state => state.cart.list)
@@ -27,7 +30,7 @@ const SidebarCart = () => {
 			const text = `Hola, quisiera una cotización de los siguientes productos:\n${dataParsed.map(order => `- ${order.sku} | ${order.title} (${order.quantity} ${order.quantity === 1 ? 'unidad' : 'unidades'})\n`).join('')}`;
 			const textEncode = encodeURI(text);
 			const url = `https://api.whatsapp.com/send?phone=51940147037&text=${textEncode}`;
-			window.open(url);
+			window.open(url, isMobile ? '_self' : '_blank');
 		}
 
     useEffect(() => {
