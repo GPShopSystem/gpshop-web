@@ -35,14 +35,11 @@
 	&-clean-cart {
 		display: flex;
 		justify-content: flex-end;
-		padding: 4px 16px 0;
-		cursor: pointer;
+		padding: 8px 16px;
 
 		span {
-			background-color: #212121;
-			color: #fff;
-			border-radius: 6px;
-			padding: 15px 20px;
+			cursor: pointer;
+			color: #212121;
 		}
 	}
 

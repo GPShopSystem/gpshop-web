@@ -6,3 +6,5 @@ out
 yarn.lock
 package-lock.json
 .env.local
+.idea
+/.idea

@@ -24,9 +24,8 @@ const SidebarCart = () => {
 			const data = localStorage.getItem("myCart")
 			const dataParsed = JSON.parse(data) || [];
 
-			const text = `Hola, quisiera una cotización de los siguientes productos:
-				${dataParsed.map(order => `- ${order.sku} | ${order.title}(${order.quantity} ${order.quantity === 1 ? 'unidad' : 'unidades'})\n`)}`;
-			const textEncode = encodeURIComponent(text);
+			const text = `Hola, quisiera una cotización de los siguientes productos:\n${dataParsed.map(order => `- ${order.sku} | ${order.title} (${order.quantity} ${order.quantity === 1 ? 'unidad' : 'unidades'})\n`).join('')}`;
+			const textEncode = encodeURI(text);
 			const url = `https://api.whatsapp.com/send?phone=51940147037&text=${textEncode}`;
 			window.open(url);
 		}
@@ -135,11 +134,15 @@ const SidebarCart = () => {
                         </div>
                     )
                 }*/}
-							<div className='sidebarCart-clean-cart' onClick={() => {
-								cleanCart()
-								closeCart()
-							}}>
-									<span>Limpiar carrito</span>
+							<div className='sidebarCart-clean-cart'>
+									<span
+										onClick={() => {
+											cleanCart()
+											closeCart()
+										}}
+									>
+										Limpiar carrito
+									</span>
 								</div>
                 <div className="sidebarCart-cart-content">
                     { renderContent() }

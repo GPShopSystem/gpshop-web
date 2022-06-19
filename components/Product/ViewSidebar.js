@@ -30,6 +30,19 @@ const ViewSidebar = () => {
         dispatch(generalActions.toggleProduct(false))
     }
 
+	const sendOrderWhatsapp = () => {
+		const data = localStorage.getItem("myCart")
+		const dataParsed = JSON.parse(data) || [];
+		const productFound = dataParsed.find(parsed => parsed.id === product.id);
+
+		const text = `Hola, quisiera una cotización de los siguientes productos: \n
+		- ${product.sku} | ${product.title}(${productFound.quantity} ${productFound.quantity === 1 ? 'unidad' : 'unidades'})
+		`;
+		const textEncode = encodeURI(text);
+		const url = `https://api.whatsapp.com/send?phone=51940147037&text=${textEncode}`;
+		window.open(url);
+	}
+
     return ( <>
         <div className={`sidebarCart-back ${showSidebarProduct ? 'active' : ''}`} onClick={closeSidebar} />
         <div className={`sidebarCart sidebarProduct ${showSidebarProduct ? 'open' : ''}`}>
@@ -37,7 +50,7 @@ const ViewSidebar = () => {
                 <h2>{product.title}</h2>
                 <div className="sidebarCart-header-close" onClick={closeSidebar}><X /></div>
             </div>
-            <Scrollbars 
+            <Scrollbars
                 universal
                 autoHeight
                 autoHeightMax={"100vh"}
@@ -55,17 +68,20 @@ const ViewSidebar = () => {
                 />
                 )}
                 >
-                { product.title && <View buttons={false} product={product} />} 
+                { product.title && <View buttons={false} product={product} />}
                 <AlertAdded show={showAlert} onFinish={() => setShowAlert(false)}/>
             </Scrollbars>
             <div className='viewProduct-buttons' style={{paddingBottom: 15}}>
                 <Buttons openAlert={() => setShowAlert(true)} cart={inCart} data={product} />
             </div>
-            <div className='sidebarCart-cart-total' style={{paddingBottom: 20}} onClick={() => closeSidebar()}>
-                <Link href="/cart"> Ir al carrito </Link>
+            <div className='sidebarCart-cart-total' style={{paddingBottom: 20}} onClick={() => sendOrderWhatsapp()}>
+                {/*<Link href="/cart"> Ir al carrito</Link>*/}
+							<a>
+								<span className="label">Enviar pedido</span>
+							</a>
             </div>
         </div>
     </>);
 }
- 
+
 export default ViewSidebar;
