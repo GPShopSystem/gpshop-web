@@ -78,10 +78,14 @@
             line-height: 1.625;
             white-space: pre-wrap;
         }
+        .sidebarCart-cart-total {
+          padding: 0;
+          width: 250px;
+        }
         &-action {
-            width: 150px;
+            width: 250px;
             margin-top: 20px;
-            zoom: 1.1;
+            zoom: 1.4;
         }
         &-security {
             list-style-type: none;

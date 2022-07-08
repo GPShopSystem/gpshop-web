@@ -9,19 +9,18 @@ import Buttons from './Buttons'
 import AlertAdded from './AlertAdded'
 import Link from 'next/link'
 import useResponsive from '../../hooks/responsive.ts'
+import { sendWhatsAppOrders } from '../../libs/utils'
 const View = dynamic(() => import('./View'));
 
 const ViewSidebar = () => {
-    const router = useRouter();
-    const dispatch = useDispatch()
-	const responsive = useResponsive()
-	const isMobile = responsive.md || responsive.sm
+  const router = useRouter();
+  const dispatch = useDispatch()
 	const selectGen = useSelector(state => state.general)
 	const products = useSelector(state => state.cart.list)
 	const showSidebarProduct = selectGen.toggleProduct
 	const product = selectGen.product
-    const inCart = products.find(e => e.id === product?.id)
-    const [showAlert, setShowAlert] = useState(true)
+  const inCart = products.find(e => e.id === product?.id)
+  const [showAlert, setShowAlert] = useState(true)
 
     useEffect(() => {
         document.body.style.overflow = showSidebarProduct ? 'hidden' : 'auto';
@@ -32,19 +31,6 @@ const ViewSidebar = () => {
         router.push({ pathname, query }, undefined, { shallow: true })
         dispatch(generalActions.toggleProduct(false))
     }
-
-	const sendOrderWhatsapp = () => {
-		const data = localStorage.getItem("myCart")
-		const dataParsed = JSON.parse(data) || [];
-		const productFound = dataParsed.find(parsed => parsed.id === product.id);
-
-		const text = `Hola, quisiera una cotización de los siguientes productos: \n
-		- ${product.sku} | ${product.title}(${productFound.quantity} ${productFound.quantity === 1 ? 'unidad' : 'unidades'})
-		`;
-		const textEncode = encodeURI(text);
-		const url = `https://api.whatsapp.com/send?phone=51940147037&text=${textEncode}`;
-		window.open(url, isMobile ? '_self' : '_blank');
-	}
 
     return ( <>
         <div className={`sidebarCart-back ${showSidebarProduct ? 'active' : ''}`} onClick={closeSidebar} />
@@ -77,10 +63,10 @@ const ViewSidebar = () => {
             <div className='viewProduct-buttons' style={{paddingBottom: 15}}>
                 <Buttons openAlert={() => setShowAlert(true)} cart={inCart} data={product} />
             </div>
-            <div className='sidebarCart-cart-total' style={{paddingBottom: 20}} onClick={() => sendOrderWhatsapp()}>
+            <div className='sidebarCart-cart-total' style={{paddingBottom: 20}} onClick={() => sendWhatsAppOrders()}>
                 {/*<Link href="/cart"> Ir al carrito</Link>*/}
 							<a>
-								<span className="label">Enviar pedido</span>
+								<span className="label">Solicitar cotización</span>
 							</a>
             </div>
         </div>

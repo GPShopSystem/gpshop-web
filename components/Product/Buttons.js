@@ -31,16 +31,57 @@ const Buttons = ({ data, cart, openAlert }) => {
         }
     }, [cart])
 
-    const addToCart = () => {
+    const cartAnimation = (event) => {
+      if(!event) return
+      const getClosest = function (elem, selector) {
+        for (; elem && elem !== document; elem = elem.parentNode) {
+          if (elem.matches(selector)) return elem;
+        }
+        return null;
+      };
+    
+      // start animation block
+      let imgToDrag = getClosest(event.target, '.useProduct');
+      let viewCart = document.getElementsByClassName('header-right-cart')[0];
+      if(!imgToDrag) return
+      let imgToDragImage = imgToDrag.querySelector('.useImage');
+      let imgToDragImageD = imgToDrag.querySelector('.increment');
+      
+      let disLeft = imgToDragImageD.getBoundingClientRect().left;
+      let disTop = imgToDragImageD.getBoundingClientRect().top;
+      let cartLeft = viewCart.getBoundingClientRect().left;
+      let cartTop = viewCart.getBoundingClientRect().top;
+      let image = imgToDragImage.cloneNode(true);
+      image.style =
+        'z-index: 11111; height: 40px; opacity:1; position:fixed; top:' +
+        (disTop - 40) +
+        'px;left:' +
+        (disLeft) +
+        'px;transition: left 1s, top 1s, width 1s, opacity 1s cubic-bezier(1, 1, 1, 1);border-radius: 50px; overflow: hidden; box-shadow: 0 21px 36px rgba(0,0,0,0.1)';
+      var reChange = document.body.appendChild(image);
+      setTimeout(function () {
+        image.style.left = cartLeft + 'px';
+        image.style.top = cartTop + 'px';
+        image.style.height = '40px';
+        image.style.opacity = '0';
+      }, 200);
+      setTimeout(function () {
+        reChange.parentNode.removeChild(reChange);
+      }, 1000);
+      // End Animation Block
+    };
+
+    const addToCart = (event) => {
         showLoader()
         setCount(count + 1)
+        cartAnimation(event);
     }
 
-    const addToCartFirst = () => {
+    const addToCartFirst = (event) => {
         if((count + 1) === 1) {
             manualDispatchUpdate(1)
         }
-        addToCart()
+        addToCart(event)
         openAlert()
     }
 

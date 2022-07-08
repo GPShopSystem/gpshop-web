@@ -31,6 +31,7 @@ const ProductCard = ({data}) => {
 
     return (
         <div className="productCard useProduct">
+            <div style={{display: 'none'}}><img src={data.image} className='useImage' /></div>
             <div className="productCard-thumb" onClick={handleQuickViewModal}>
                 <div
                     className="productCard-thumb-image"
