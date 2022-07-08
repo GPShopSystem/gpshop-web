@@ -39,7 +39,9 @@ export default function Index({ categories }) {
 				<title>Global Peruvian Shop (GPSHOP) - Artículos de limpieza</title>
 			</Head>
 			<div style={{marginBottom:15}}>
-				<img src="/static/banner-home/palos.png" width="100%" />
+        <a target='_blank' href='https://api.whatsapp.com/send?phone=51940147037&text=Hola,%20quisiera%20una%20cotizaci%C3%B3n%20de%20los%20siguientes%20productos:%0A%0A%E2%9E%A1%EF%B8%8F%20Palos%20forrados%20importados'>
+				  <img src="/static/banner-home/palos.png" width="100%" />
+        </a>
 			</div>
 			<div className="productList">
 				{
