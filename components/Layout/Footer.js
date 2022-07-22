@@ -3,10 +3,11 @@ import React, { memo } from 'react';
 const Footer = () => {
     return ( <footer className='footer'>
     <div className='l-footer'>
-        <img src='https://i.postimg.cc/y62wcLBq/logo.png' alt='' />
         <p>
             Somos tus aliados en los momentos esenciales de la vida como la limpieza del hogar 🏠 con soluciones innovadoras💡 en limpieza para todos los peruanos.
         </p>
+
+        <p><b>¿Eres distribuidor?</b> Escríbenos a contacto@gpshop.pe</p>
     </div>
     <ul className='r-footer'>
         <li>
@@ -19,8 +20,7 @@ const Footer = () => {
         <li className='features'>
         <h2>Link de interés</h2>
             <ul className='box'>
-                <li><a href='#'>Blog</a></li>
-                <li><a href='#'>Proveedores</a></li>
+                <li><a href='mail:contacto@gpshop.pe'>Proveedores</a></li>
             </ul>
         </li>
         <li>

@@ -36,7 +36,10 @@ export default function Index({ categories }) {
 	return (
 		<>
 			<Head>
-				<title>Global Peruvian Shop (GPSHOP) - Artículos de limpieza</title>
+				<title>Global Peruvian Shop (GPSHOP) - Artículos de limpieza - Perú</title>
+        <meta name="description" content="Somos una empresa comercializadora e importadora de artículos de limpieza con envíos a todo el Perú. Distruidores de marcas como Hude, Prolimso, Virutex, Dayr, Daryza y muchas más."/>
+        <meta name="keywords" content="hude, dayr, prolimso, proveedor de artículos de limpieza, gpshop"/>
+        <meta name="robots" content="index"/>
 			</Head>
 			<div style={{marginBottom:15}}>
         <a target='_blank' href='https://api.whatsapp.com/send?phone=51940147037&text=Hola,%20quisiera%20una%20cotizaci%C3%B3n%20de%20los%20siguientes%20productos:%0A%0A%E2%9E%A1%EF%B8%8F%20Palos%20forrados%20importados'>

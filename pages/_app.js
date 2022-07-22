@@ -73,7 +73,7 @@ class MyApp extends App {
 				<ViewSidebar />
 				<FloatingWhatsApp 
 					accountName='GPSHOP' 
-					phoneNumber='51940147037'
+					phoneNumber='51936257271'
 					chatMessage='Hola! 🤝¿podemos ayudarte?' 
 					placeholder='Escribe tu mensaje...'
 					statusMessage='Normalmente la respuesta es de 13 minutos'

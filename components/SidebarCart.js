@@ -29,7 +29,7 @@ const SidebarCart = () => {
 
       const text = `Hola, quisiera una cotización de los siguientes productos:\n\n${dataParsed.map(order => `➡️ ${order.title} (${order.quantity} ${order.quantity === 1 ? 'unidad' : 'unidades'})\n`).join('')}`;
       const textEncode = encodeURI(text);
-      const url = `https://api.whatsapp.com/send?phone=51940147037&text=${textEncode}`;
+      const url = `https://api.whatsapp.com/send?phone=51936257271&text=${textEncode}`;
       window.open(url, isMobile ? '_self' : '_blank');
 		}
 

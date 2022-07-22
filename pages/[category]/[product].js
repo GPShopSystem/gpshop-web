@@ -7,7 +7,6 @@ import ProductCard from '../../components/Product/Card';
 import Head from 'next/head'
 
 export default function Index({ product, categories }) {
-	console.log('product', product)
 	const dispatch = useDispatch()
 	const [products, setProducts] = useState([])
 	const [loadingProducts, setLoadingProducts] = useState(true)
@@ -47,6 +46,7 @@ export default function Index({ product, categories }) {
 		<>
 			<Head>
 				<title>{product.title} - GPShop.pe</title>
+        <meta name="description" content={`${product.title}: Envíos a todo el Perú - Cotiza por internet de manera segura con GPSHOP`}/>
 			</Head>
 			<View product={product} showButtonBack={showButtonBack} />
 			{
