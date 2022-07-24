@@ -33,7 +33,7 @@ export const useTotalCartPrice = () => {
 
 export const userCanOrder = () => {
   const totalPrice = useTotalCartPrice()
-  return totalPrice >= 10
+  return totalPrice >= 0
 }
 
 export const createDataTree = dataset => {

@@ -13,7 +13,7 @@ const Footer = () => {
         <li>
             <h2>Redes sociales</h2>
             <ul className='box'>
-                <li><a href='https://www.instagram.com/gpshop_pe/' target='_blank'>Instragram</a></li>
+                <li><a href='https://www.instagram.com/gpshop_pe/' target='_blank'>Instagram</a></li>
                 <li><a href='https://www.facebook.com/globalperuvianshop' target='_blank'>Facebook</a></li>
             </ul>
         </li>
@@ -33,6 +33,12 @@ const Footer = () => {
     </ul>
     <div className='b-footer'>
         <p>Todos los derechos reservados © Global Peruvian Shop {new Date().getFullYear()}</p>
+        <p style={{
+          display: 'flex',
+          justifyContent: 'center',
+        }}>
+          <span>Con la tecnología de</span>
+          <a style={{marginLeft: 5}} href='https://karpa.app/?from=gpshop' target='_blank'><img width={70} alt='Crea tu tienda virtual gratis' src='https://karpa.app/storage/logo/karpa_logo.png'/></a></p>
     </div>
     </footer>);
 }

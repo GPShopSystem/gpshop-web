@@ -14,7 +14,6 @@
 
 .l-footer {
     margin-right: 1.25em;
-    margin-bottom: 2em;
 }
 
 .footer ul {
@@ -51,7 +50,6 @@
 }
 
 .l-footer p {
-    padding-right: 20%;
     color: #999;
 }   
 
@@ -66,6 +64,10 @@
 
     .l-footer {
         flex: 1 0px;
+        margin-bottom: 2em;
+        p {
+          padding-right: 20%;
+        }
     }
 
     .r-footer {

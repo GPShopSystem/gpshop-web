@@ -53,7 +53,7 @@ class MyApp extends App {
 		return (
 			<>
 				<Head>
-					<title>GPSHOP</title>
+					<title>Global Peruvian Shop (GPSHOP) - Artículos de limpieza - Perú</title>
 					<meta
 						name="viewport"
 						content="width=device-width, initial-scale=1.0"

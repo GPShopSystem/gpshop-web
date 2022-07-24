@@ -4,6 +4,7 @@ import ProductCard from '../components/Product/Card';
 import { useDispatch } from 'react-redux'
 import * as generalActions from '../redux/actions/general'
 import { createDataTree } from '../hooks/hooks'
+import Head from 'next/head'
 
 export default function Index({ categories }) {
     const dispatch = useDispatch()
@@ -48,6 +49,10 @@ export default function Index({ categories }) {
 
 	return (
 		<>
+      <Head>
+        <title>Artículos: {query.category} - GPShop.pe</title>
+        <meta name="description" content={`¿Buscas ${query.category}? ¡Lo tenemos con envíos a todo el Perú. Cotiza por internet de manera segura con GPSHOP`}/>
+      </Head>
 			<p>
 				Se encontraron <b>{products.length}</b> productos que coinciden con: <b>{query.category}</b>
 			</p>

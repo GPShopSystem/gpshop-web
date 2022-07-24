@@ -7,8 +7,6 @@ class MyDocument extends Document {
 		return (
 			<Html lang="es-ES">
 				<Head>
-					<meta name="description" content="Somos una empresa comercializadora e importadora de artículos de limpieza. Trabajamos con marcas como Hude, Prolimso, Virutex, Dayr, Daryza y muchas más."/>
-					<meta name="keywords" content="hude, dayr, prolimso, proveedor de artículos de limpieza, gpshop"/>
 					<link rel="manifest" href="/static/manifest.json" />
 					<link rel="icon" href="/static/img/favicon.png" />
 					<meta name="viewport" content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no;user-scalable=0;"/>

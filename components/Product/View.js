@@ -69,7 +69,7 @@ const View = ({ product, showButtonBack, isModal, onClose, buttons = true }) => 
 				{
 					buttons && (
             <>
-              <div className='sidebarCart-cart-total' style={{paddingBottom: 20, width:'max-content'}} onClick={() => sendWhatsAppOrder(product)}>
+              <div className='sidebarCart-cart-total' style={{paddingBottom: 20, width:'fit-content'}} onClick={() => sendWhatsAppOrder(product)}>
                   {/*<Link href="/cart"> Ir al carrito</Link>*/}
                 <a>
                   <span className="label">Solicitar cotización por WhatsApp</span>
