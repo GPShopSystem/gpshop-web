@@ -15,6 +15,7 @@ const Footer = () => {
               <ul className='box'>
                   <li><a href='https://www.instagram.com/gpshop_pe/' target='_blank'>Instagram</a></li>
                   <li><a href='https://www.facebook.com/globalperuvianshop' target='_blank'>Facebook</a></li>
+                  <li><a href='https://www.tiktok.com/@gpshop_pe' target='_blank'>TikTok</a></li>
               </ul>
           </li>
           {/*<li className='features'>
