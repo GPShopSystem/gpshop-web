@@ -6,6 +6,11 @@
     color: #2f53d0;
     background-color: white;
     margin: 40px -30px 0 -30px;
+    .maps {
+      object-fit: cover;
+      width: 100%;
+      height: 300px;
+    }
 }
 
 .footer > * {
@@ -59,12 +64,11 @@
     }
 
     .features {
-        flex-grow: 1;
+        flex-grow: 2;
     }
 
     .l-footer {
         flex: 1 0px;
-        margin-bottom: 2em;
         p {
           padding-right: 20%;
         }
