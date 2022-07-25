@@ -1,14 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import ProductCard from '../components/Product/Card';
+import Modal from 'react-modal';
 import { useDispatch } from 'react-redux'
 import * as generalActions from '../redux/actions/general'
 import { createDataTree } from '../hooks/hooks'
 import Head from 'next/head'
+Modal.setAppElement('#__next');
 
 export default function Index({ categories }) {
-    const dispatch = useDispatch()
+  const dispatch = useDispatch()
 	const [products, setProducts] = useState([])
 	const [loadingProducts, setLoadingProducts] = useState(true)
+	const [modalInit, setModalInit] = useState(false)
 	const resProducts = async () => {
 		const getList = await fetch(
 			process.env.NEXT_PUBLIC_URL_BASE + '/api/products/'
@@ -23,6 +26,7 @@ export default function Index({ categories }) {
 	}, [categories])
 
 	useEffect(() => {
+    setModalInit(localStorage.getItem('modalInit') ? false : true);
 		resProducts();
 	},[])
 
@@ -51,6 +55,38 @@ export default function Index({ categories }) {
 					renderProducts()
 				}
 			</div>
+      <Modal
+        style={
+          {
+            overlay: {
+              zIndex: 999999
+            },
+            content: {
+              top: '50%',
+              left: '50%',
+              right: 'auto',
+              bottom: 'auto',
+              marginRight: '-50%',
+              transform: 'translate(-50%, -50%)',
+            },
+          }
+        }
+        isOpen={modalInit}
+      >
+        <h4>Crea tu cotización en 3 pasos.</h4>
+        <ul className='modalInitUl'>
+          <li>Elige los productos que quieras.</li>
+          <li>Revisa tus productos seleccionados.</li>
+          <li>Envía tu cotización por WhatsApp.</li>
+        </ul>
+        <div className='sidebarCart-cart-total a text-center'>
+          <a href='./' onClick={(e) =>{
+            e.preventDefault();
+            localStorage.setItem('modalInit', false);
+            setModalInit(false);
+          }}>¡De acuerdo!</a>
+        </div>
+      </Modal>
 		</>
 	)
 }
