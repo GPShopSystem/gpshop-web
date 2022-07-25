@@ -1,12 +1,25 @@
 import React from 'react'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import { ServerStyleSheets } from '@material-ui/styles'
+import Script from 'next/script';
 
 class MyDocument extends Document {
 	render() {
 		return (
 			<Html lang="es-ES">
 				<Head>
+        <Script strategy="lazyOnload" src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`} />
+
+        <Script strategy="lazyOnload">
+            {`
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'UA-36900772-5', {
+                page_path: window.location.pathname,
+                });
+            `}
+        </Script>
 					<link rel="manifest" href="/static/manifest.json" />
 					<link rel="icon" href="/static/img/favicon.png" />
 					<meta name="viewport" content="width=device-width, height=device-height,  initial-scale=1.0, user-scalable=no;user-scalable=0;"/>
